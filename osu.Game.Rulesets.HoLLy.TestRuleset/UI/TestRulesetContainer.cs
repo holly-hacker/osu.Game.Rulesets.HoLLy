@@ -19,6 +19,6 @@ namespace osu.Game.Rulesets.HoLLy.Test.UI
 
         protected override BeatmapConverter<TestHitObject> CreateBeatmapConverter() => new TestBeatmapConverter();
 
-        protected override DrawableHitObject<TestHitObject> GetVisualRepresentation(TestHitObject h) => new TestDrawable(h);
+        protected override DrawableHitObject<TestHitObject> GetVisualRepresentation(TestHitObject h) => new TestDrawable(h, ((TestRuleset)Ruleset).TextureStore) {Depth = (float)h.StartTime};
     }
 }

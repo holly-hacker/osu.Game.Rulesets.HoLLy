@@ -9,11 +9,12 @@ namespace osu.Game.Rulesets.HoLLy.Test.Beatmaps
 {
     internal class TestBeatmapConverter : BeatmapConverter<TestHitObject>
     {
-        protected override IEnumerable<Type> ValidConversionTypes => new[] {typeof(IHasXPosition)};
+        //TODO: does this mean both have to be satisfied, or just one?
+        protected override IEnumerable<Type> ValidConversionTypes => new[] {typeof(IHasPosition)};
 
         protected override IEnumerable<TestHitObject> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
-            yield return new TestHitObject();
+            yield return new TestHitObject(((IHasPosition)original).Position, original);
         }
     }
 }
