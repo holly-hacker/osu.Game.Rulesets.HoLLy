@@ -1,5 +1,4 @@
-﻿using System;
-using osu.Framework.Input;
+﻿using osu.Framework.Input;
 using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.HoLLy.Hex.Beatmaps;
@@ -20,6 +19,6 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 
         protected override BeatmapConverter<HexHitObject> CreateBeatmapConverter() => new HexBeatmapConverter();
 
-        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(h);
+        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(h, ((HexRuleset)Ruleset).TextureStore.Get("HexNote"));
     }
 }

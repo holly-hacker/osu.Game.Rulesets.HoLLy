@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Textures;
+using osu.Framework.IO.Stores;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.HoLLy.Hex.UI;
@@ -10,10 +12,17 @@ namespace osu.Game.Rulesets.HoLLy.Hex
 {
     internal class HexRuleset : Ruleset
     {
+        public ResourceStore<byte[]> ResourceStore;
+        public TextureStore TextureStore;
+
         public override string Description => "osu!Hex";
         public override string ShortName => "holly.hex";
 
-        public HexRuleset(RulesetInfo f = null) : base(f) { }
+        public HexRuleset(RulesetInfo f = null) : base(f)
+        {
+            ResourceStore = new NamespacedResourceStore<byte[]>(new DllResourceStore("osu.Game.Rulesets.HoLLy.Hex.dll"), "Resources");
+            TextureStore = new TextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
+        }
 
         public override IEnumerable<Mod> GetModsFor(ModType type) { yield break; }
 

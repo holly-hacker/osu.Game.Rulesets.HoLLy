@@ -14,13 +14,16 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Beatmaps
 
         protected override IEnumerable<HexHitObject> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
-            int laneCount = (int)beatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty;
-            int lane = (int)((((IHasXPosition)original).X / 512f) * laneCount);
+            float od = beatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty;
+            float x = ((IHasXPosition)original).X;
+
+            int laneCount = (int)od;
+            int lane = (int)(x / (512f + 1) * laneCount);
 
             Debug.Assert(lane >= 0);
             Debug.Assert(lane < laneCount);
 
-            yield return new HexHitObject(lane, laneCount);
+            yield return new HexHitObject(lane, laneCount, original);
         }
     }
 }
