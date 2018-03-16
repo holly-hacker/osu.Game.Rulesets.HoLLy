@@ -22,13 +22,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes
             Texture = t ?? Texture.WhitePixel;
         }
 
+        //TODO
         //public override RectangleF BoundingBox => ToTriangle(ToParentSpace(LayoutRectangle)).AABBFloat;
         //public override bool Contains(Vector2 screenSpacePos) => ToTriangle(ScreenSpaceDrawQuad).Contains(screenSpacePos);
-
-        private static Triangle ToTriangle(Quad q) => new Triangle(
-            (q.TopLeft + q.TopRight) / 2,
-            q.BottomLeft,
-            q.BottomRight);
         
         protected override DrawNode CreateDrawNode() => new PolygonDrawNode(_sides);
 
@@ -55,13 +51,14 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes
             {
                 //we have to recalculate the scaled positions, because ScreenSpaceDrawQuad changes
                 Vector2 center = (ScreenSpaceDrawQuad.TopLeft + ScreenSpaceDrawQuad.BottomRight) / 2f;
-                float radius = ScreenSpaceDrawQuad.Size.Length; //could be LengthFast, perhaps, but speed isn't super important here
+                float radius = ScreenSpaceDrawQuad.Size.Length; //could be LengthFast, perhaps
                 for (int i = 0; i < _sides; i++)
                     _cornersScaled[i] = center + _cornersRel[i] * radius;
 
-                for (int i = 0; i < _sides; i++) {
-                    var tr = new Triangle(center, _cornersScaled[i], _cornersScaled[(i + 1) % _sides]);
-                    Texture.DrawTriangle(tr, DrawInfo.Colour);    //inflationPercentage: new Vector2(InflationAmount.X / DrawRectangle.Width, InflationAmount.Y / DrawRectangle.Height)
+                Vector2 x = _cornersScaled[_sides - 1];
+                for (int i = 0; i < _sides - 2; i++) {
+                    var tr = new Triangle(x, _cornersScaled[i], _cornersScaled[i + 1]);
+                    Texture.DrawTriangle(tr, DrawInfo.Colour);
                 }
             }
         }
