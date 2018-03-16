@@ -10,17 +10,20 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
 {
     internal class HexNote : DrawableHitObject<HexHitObject>
     {
+        public override bool IsPresent => base.IsPresent && Time.Current >= HitObject.StartTime - 2000;
+
         public HexNote(HexHitObject hitObject, Texture tx) : base(hitObject)
         {
-            Origin = Anchor.Centre;
-            Anchor = Anchor.Centre;
+            Origin = Anchor.TopLeft;
+            Anchor = Anchor.TopLeft;
             Size = new Vector2(64);
             Position = new Vector2((float)hitObject.Lane / (hitObject.LaneCount - 1), (float)hitObject.StartTime / 100f);
 
             RelativePositionAxes = Axes.X;
 
             Add(new Sprite {
-                Texture = tx
+                Texture = tx,
+                Origin = Anchor.Centre
             });
         }
 
@@ -35,7 +38,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)
         {
             if (userTriggered)
-                AddJudgement(new Judgement { Result = HitResult.Good });
+                AddJudgement(new Judgement { Result = HitResult.Great });
         }
 
         protected override void UpdateState(ArmedState state)

@@ -11,7 +11,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 {
     internal class HexRulesetContainer : RulesetContainer<HexHitObject>
     {
-        public HexRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap, bool isForCurrentRuleset) : base(ruleset, workingBeatmap, isForCurrentRuleset) { }
+        public HexRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap, bool isForCurrentRuleset) 
+            : base(ruleset, workingBeatmap, isForCurrentRuleset) { }
 
         public override PassThroughInputManager CreateInputManager() => new HexInputManager(Ruleset.RulesetInfo, 0, SimultaneousBindingMode.None);
 
