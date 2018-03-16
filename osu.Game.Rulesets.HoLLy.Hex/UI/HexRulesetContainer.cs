@@ -6,10 +6,11 @@ using osu.Game.Rulesets.HoLLy.Hex.Objects;
 using osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
+using osu.Game.Rulesets.UI.Scrolling;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.UI
 {
-    internal class HexRulesetContainer : RulesetContainer<HexHitObject>
+    internal class HexRulesetContainer : ScrollingRulesetContainer<HexPlayfield, HexHitObject>
     {
         public HexRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap, bool isForCurrentRuleset) 
             : base(ruleset, workingBeatmap, isForCurrentRuleset) { }

@@ -1,6 +1,8 @@
 ﻿using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
+using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI.Scrolling;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.UI
@@ -11,11 +13,14 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         private const float ColumnWidthBase = 150f;
         private const float PaddingBase = 80f;
 
+        protected override Container<Drawable> Content { get; }
+
         private int _index;
 
         public HexLane(int index, int laneCount) : base(ScrollingDirection.Up)
         {
             _index = index;
+            VisibleTimeRange.Value = 10000.0;   //TODO: this is a hack, figure out the proper way
 
             float scaledWidth = Width = ColumnWidthBase / laneCount;
             Rotation = 360f * index / laneCount;
@@ -29,7 +34,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                 {
                     Width = 3,
                     Height = 300,
-                    Y = ColumnWidthBase/2,
+                    Y = scaledWidth,
                     Anchor = Anchor.Centre,
                     Origin = Anchor.TopCentre
                 },
@@ -37,10 +42,20 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                 {
                     Width = scaledWidth,
                     Height = scaledWidth,
-                    Rotation = 180,
+                    //Rotation = 180,
                     Origin = Anchor.Centre,
                 },
+                Content = new Container {
+                    RelativeSizeAxes = Axes.Both,
+                    Origin = Anchor.BottomCentre
+                }
             };
+        }
+
+        public override void Add(DrawableHitObject h)
+        {
+            h.Depth = (float)h.HitObject.StartTime;
+            base.Add(h);
         }
     }
 }

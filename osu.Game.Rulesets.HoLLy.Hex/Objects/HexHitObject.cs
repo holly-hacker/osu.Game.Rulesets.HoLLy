@@ -1,11 +1,10 @@
 ﻿using osu.Game.Rulesets.Objects;
-using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Objects
 {
-    internal class HexHitObject : HitObject, IHasXPosition
+    internal class HexHitObject : HitObject
     {
-        public float X => 512f * Lane / LaneCount;
+        //public float X => 512f * Lane / LaneCount;
         public int Lane { get; }
         public int LaneCount { get; }
 
