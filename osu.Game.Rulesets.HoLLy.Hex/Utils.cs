@@ -2,11 +2,9 @@
 
 namespace osu.Game.Rulesets.HoLLy.Hex
 {
-    internal class Utils
+    internal static class Utils
     {
-        private const int LanesMin = 3;
-        private const int LanesMax = 10;
-
-        public static int GetLaneCount(float od) => MathHelper.Clamp((int)od, LanesMin, LanesMax);
+        public static int GetLaneCount(float od) => MathHelper.Clamp((int)od, Constants.LanesMin, Constants.LanesMax);
+        public static float GetHitobjectSize(int laneCount) => Constants.ColumnWidthBase / laneCount;
     }
 }

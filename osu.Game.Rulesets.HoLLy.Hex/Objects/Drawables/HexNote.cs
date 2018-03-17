@@ -4,7 +4,6 @@ using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
-using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
 {
@@ -12,15 +11,13 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
     {
         public HexNote(HexHitObject hitObject, Texture tx) : base(hitObject)
         {
-            Origin = Anchor.TopLeft;
-            Anchor = Anchor.TopLeft;
-            Size = new Vector2(64);
-
-            RelativePositionAxes = Axes.Both;
-
+            Anchor = Anchor.Centre;
+            Origin = Anchor.Centre;
+            
             Add(new Sprite {
                 Texture = tx,
-                Origin = Anchor.Centre
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
             });
         }
 

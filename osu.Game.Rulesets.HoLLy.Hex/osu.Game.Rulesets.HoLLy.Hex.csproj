@@ -57,6 +57,7 @@
     <Compile Include="UI\HexLane.cs" />
     <Compile Include="UI\HexPlayfield.cs" />
     <Compile Include="UI\HexRulesetContainer.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>

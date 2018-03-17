@@ -12,6 +12,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public HexPlayfield(int laneCount) : base(ScrollingDirection.Up)
         {
             Anchor = Anchor.Centre;
+            Origin = Anchor.TopLeft;
 
             //create lanes
             lanes = new HexLane[laneCount];

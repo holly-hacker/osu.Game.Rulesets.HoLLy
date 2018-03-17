@@ -4,50 +4,54 @@ using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI.Scrolling;
+using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.UI
 {
     //TODO colorize. through IHasAccentColour?
     internal class HexLane : ScrollingPlayfield
     {
-        private const float ColumnWidthBase = 150f;
-        private const float PaddingBase = 80f;
-
         protected override Container<Drawable> Content { get; }
 
         private int _index;
+        private readonly float _scaledWidth;
 
         public HexLane(int index, int laneCount) : base(ScrollingDirection.Up)
         {
             _index = index;
-            VisibleTimeRange.Value = 10000.0;   //TODO: this is a hack, figure out the proper way
+            VisibleTimeRange.Value = 2_000;
 
-            float scaledWidth = Width = ColumnWidthBase / laneCount;
+            _scaledWidth = Width = Utils.GetHitobjectSize(laneCount);
             Rotation = 360f * index / laneCount;
-            Anchor = Anchor.BottomCentre;
-            Padding = new MarginPadding {Top = PaddingBase};
+            Anchor = Anchor.TopCentre;
+            Origin = Anchor.TopCentre;
+            Padding = new MarginPadding {Top = Constants.PaddingBase};
 
             InternalChildren = new Drawable[]
             {
-                //line
                 new Box
                 {
-                    Width = 3,
-                    Height = 300,
-                    Y = scaledWidth,
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.TopCentre
+                    Name = "LanePath",
+                    Width = 3,                      //thickness of the bar
+                    Height = Constants.LaneLength,  //length, should be long enough so that the end cannot be seen
+                    Y = _scaledWidth/2,             //starts at the center of the polygon
+                    Anchor = Anchor.TopCentre,
+                    Origin = Anchor.TopCentre,
                 },
                 new Polygon(laneCount)
                 {
-                    Width = scaledWidth,
-                    Height = scaledWidth,
-                    //Rotation = 180,
-                    Origin = Anchor.Centre,
+                    Name = "LaneBase",
+                    Size = new Vector2(_scaledWidth),   //should be same size as notes
+                    Anchor = Anchor.TopCentre,
+                    Origin = Anchor.TopCentre,
                 },
-                Content = new Container {
-                    RelativeSizeAxes = Axes.Both,
-                    Origin = Anchor.BottomCentre
+                Content = new Container
+                {
+                    Name = "HitobjectContainer",
+                    RelativeSizeAxes = Axes.X,
+                    Height = Constants.LaneLength,
+                    Anchor = Anchor.TopCentre,
+                    Origin = Anchor.Centre,
                 }
             };
         }
@@ -55,6 +59,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public override void Add(DrawableHitObject h)
         {
             h.Depth = (float)h.HitObject.StartTime;
+            h.Size = new Vector2(_scaledWidth);
             base.Add(h);
         }
     }
