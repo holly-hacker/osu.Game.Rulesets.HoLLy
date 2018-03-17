@@ -17,10 +17,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 
         public override PassThroughInputManager CreateInputManager() => new HexInputManager(Ruleset.RulesetInfo, 0, SimultaneousBindingMode.None);
 
-        protected override Playfield CreatePlayfield() => new HexPlayfield(Utils.GetLaneCount(WorkingBeatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty));
+        protected override Playfield CreatePlayfield() => new HexPlayfield(WorkingBeatmap.Beatmap.GetLaneCount());
 
         protected override BeatmapConverter<HexHitObject> CreateBeatmapConverter() => new HexBeatmapConverter();
 
-        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(h, ((HexRuleset)Ruleset).TextureStore.Get("HexNote"));
+        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(h, WorkingBeatmap.Beatmap.GetLaneCount());
     }
 }

@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public HexLane(int index, int laneCount) : base(ScrollingDirection.Up)
         {
             _index = index;
-            VisibleTimeRange.Value = 2_000;
+            VisibleTimeRange.Value = Constants.NoteSpeedBase;
 
             _scaledWidth = Width = Utils.GetHitobjectSize(laneCount);
             Rotation = 360f * index / laneCount;
@@ -59,7 +59,6 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public override void Add(DrawableHitObject h)
         {
             h.Depth = (float)h.HitObject.StartTime;
-            h.Size = new Vector2(_scaledWidth);
             base.Add(h);
         }
     }

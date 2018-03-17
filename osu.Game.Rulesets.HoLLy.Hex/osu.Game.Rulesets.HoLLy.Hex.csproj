@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beatmaps\HexBeatmapConverter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Graphics\Shapes\Polygon.cs" />
     <Compile Include="HexDifficultyCalculator.cs" />
     <Compile Include="HexInputManager.cs" />
@@ -75,9 +76,8 @@
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Textures\HexNote.png" />
+    <Folder Include="Resources\Textures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,23 +1,37 @@
 ﻿using osu.Framework.Graphics;
-using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.Textures;
+using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
+using OpenTK;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
 {
     internal class HexNote : DrawableHitObject<HexHitObject>
     {
-        public HexNote(HexHitObject hitObject, Texture tx) : base(hitObject)
+        public HexNote(HexHitObject hitObject, int laneCount) : base(hitObject)
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
+
+            Size = new Vector2(Utils.GetHitobjectSize(laneCount));
             
-            Add(new Sprite {
-                Texture = tx,
+            Add(new Container
+            {
+                Children = new Drawable[] {
+                    new Polygon(laneCount) {
+                        Name = "Shape",
+                        RelativeSizeAxes = Axes.Both,
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                    }
+                },
+                RelativeSizeAxes = Axes.Both,
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
+                Colour = Color4.DimGray,
             });
         }
 

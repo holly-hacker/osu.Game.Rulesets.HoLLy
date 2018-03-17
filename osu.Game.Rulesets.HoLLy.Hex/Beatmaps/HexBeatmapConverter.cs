@@ -14,10 +14,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Beatmaps
 
         protected override IEnumerable<HexHitObject> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
-            float od = beatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty;
             float x = ((IHasXPosition)original).X;
 
-            int laneCount = Utils.GetLaneCount(od);
+            int laneCount = beatmap.GetLaneCount();
             int lane = (int)(x / (512f + 1) * laneCount);
 
             Debug.Assert(lane >= 0);
