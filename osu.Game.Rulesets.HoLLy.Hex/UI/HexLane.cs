@@ -14,43 +14,38 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         protected override Container<Drawable> Content { get; }
 
         private int _index;
-        private readonly float _scaledWidth;
 
-        public HexLane(int index, int laneCount) : base(ScrollingDirection.Up)
+        public HexLane(int index, int laneCount) : base(ScrollingDirection.Left)
         {
             _index = index;
             VisibleTimeRange.Value = Constants.NoteSpeedBase;
 
-            _scaledWidth = Width = Utils.GetHitobjectSize(laneCount);
-            Rotation = 360f * index / laneCount;
-            Anchor = Anchor.TopCentre;
-            Origin = Anchor.TopCentre;
-            Padding = new MarginPadding {Top = Constants.PaddingBase};
+            float scaledHeight = Height = Utils.GetHitobjectSize(laneCount);
 
             InternalChildren = new Drawable[]
             {
                 new Box
                 {
                     Name = "LanePath",
-                    Width = 3,                      //thickness of the bar
-                    Height = Constants.LaneLength,  //length, should be long enough so that the end cannot be seen
-                    Y = _scaledWidth/2,             //starts at the center of the polygon
-                    Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre,
+                    Height = 3,                     //thickness of the bar
+                    Width = Constants.LaneLength,   //length, should be long enough so that the end cannot be seen
+                    X = scaledHeight/2,             //starts at the center of the polygon
+                    Anchor = Anchor.CentreLeft,
+                    Origin = Anchor.CentreLeft,
                 },
                 new Polygon(laneCount)
                 {
                     Name = "LaneBase",
-                    Size = new Vector2(_scaledWidth),   //should be same size as notes
-                    Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre,
+                    Size = new Vector2(scaledHeight),   //should be same size as notes
+                    Anchor = Anchor.CentreLeft,
+                    Origin = Anchor.CentreLeft,
                 },
                 Content = new Container
                 {
                     Name = "HitobjectContainer",
-                    RelativeSizeAxes = Axes.X,
-                    Height = Constants.LaneLength,
-                    Anchor = Anchor.TopCentre,
+                    RelativeSizeAxes = Axes.Y,
+                    Width = Constants.LaneLength,
+                    Anchor = Anchor.CentreLeft,
                     Origin = Anchor.Centre,
                 }
             };
