@@ -2,7 +2,7 @@
 {
     internal static class Constants
     {
-        public const float ColumnWidthBase = 128f;
+        public const float ColumnWidthBase = 256f * 1.5f;
         public const float PaddingBase = 64f;
         public const int LaneLength = 800;
 
