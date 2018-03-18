@@ -27,9 +27,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                 new Box
                 {
                     Name = "LanePath",
-                    Height = 3,                     //thickness of the bar
-                    Width = Constants.LaneLength,   //length, should be long enough so that the end cannot be seen
-                    X = scaledHeight/2,             //starts at the center of the polygon
+                    Height = 3,         //thickness of the bar
+                    X = scaledHeight/2, //starts at the center of the polygon
+                    Width = Constants.LaneLength - scaledHeight/2,  //length, should be long enough so that the end cannot be seen
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
                 },
