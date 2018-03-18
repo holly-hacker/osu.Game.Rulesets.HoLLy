@@ -48,6 +48,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                 {
                     Name = "HitobjectContainer",
                     RelativeSizeAxes = Axes.Y,
+                    X = scaledHeight/2,             //starts at the center of the polygon, otherwise notes pop too late
                     Width = Constants.LaneLength,
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.Centre,
