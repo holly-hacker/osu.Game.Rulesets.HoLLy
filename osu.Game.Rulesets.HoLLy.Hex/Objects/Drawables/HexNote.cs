@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
 
             Size = new Vector2(Utils.GetHitobjectSize(laneCount));
             
-            Add(new Container
+            Add(new CircularContainer
             {
                 Children = new Drawable[] {
                     new Polygon(laneCount) {
@@ -39,11 +39,6 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
                 Colour = Color4.DimGray,
             });
         }
-        
-        protected override void Update()
-        {
-            base.Update();
-        }
 
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)
         {
@@ -57,21 +52,21 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
 
         protected override void UpdateState(ArmedState state)
         {
+            const double timeFadeHit = 250, timeFadeMiss = 400;
+
             switch (state) {
                 case ArmedState.Idle:
                     break;
                 case ArmedState.Hit:
-                    this.ScaleTo(2, 100, Easing.OutCubic)
-                        .FadeColour(Color4.Yellow, 100, Easing.OutQuint)
-                        .Then()
-                        .FadeOut(100, Easing.OutQuint)
+                    this.ScaleTo(2, timeFadeHit / 3, Easing.OutCubic)
+                        .FadeColour(Color4.Yellow, timeFadeHit / 3, Easing.OutQuint)
+                        .FadeOut(timeFadeHit)
                         .Expire();
                     break;
                 case ArmedState.Miss:
-                    this.ScaleTo(0.5f, 200)
-                        .FadeColour(Color4.Red, 200, Easing.OutQuint)
-                        .Then()
-                        .FadeOut(600, Easing.OutCubic)
+                    this.ScaleTo(0.5f, timeFadeMiss, Easing.InCubic)
+                        .FadeColour(Color4.Red, timeFadeMiss, Easing.OutQuint)
+                        .FadeOut(timeFadeMiss)
                         .Expire();
                     break;
             }
