@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics;
+using osu.Game.Rulesets.HoLLy.Hex.Mods;
 using osu.Game.Rulesets.HoLLy.Hex.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
@@ -24,7 +26,21 @@ namespace osu.Game.Rulesets.HoLLy.Hex
             TextureStore = new TextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
         }
 
-        public override IEnumerable<Mod> GetModsFor(ModType type) { yield break; }
+        public override IEnumerable<Mod> GetModsFor(ModType type)
+        {
+            switch (type) {
+                case ModType.DifficultyReduction:
+                    return new Mod[] {
+                        new HexModNoFail()
+                    };
+                case ModType.DifficultyIncrease:
+                    return new Mod[0];
+                case ModType.Special:
+                    return new Mod[0];
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+        }
 
         public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null) => new HexDifficultyCalculator();
 
