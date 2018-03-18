@@ -21,6 +21,6 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 
         protected override BeatmapConverter<HexHitObject> CreateBeatmapConverter() => new HexBeatmapConverter();
 
-        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(h, WorkingBeatmap.Beatmap.GetLaneCount());
+        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(Playfield.Lanes[h.Lane], h, WorkingBeatmap.Beatmap.GetLaneCount());
     }
 }

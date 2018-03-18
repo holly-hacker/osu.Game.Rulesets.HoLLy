@@ -8,16 +8,17 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 {
     internal class HexPlayfield : ScrollingPlayfield
     {
-        private readonly HexLane[] lanes;
+        public readonly HexLane[] Lanes;
+
         public HexPlayfield(int laneCount) : base(ScrollingDirection.Left)
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.TopLeft;
 
             //create lanes
-            lanes = new HexLane[laneCount];
+            Lanes = new HexLane[laneCount];
             for (int i = 0; i < laneCount; i++) {
-                AddNested(lanes[i] = new HexLane(i, laneCount) {
+                AddNested(Lanes[i] = new HexLane(i, laneCount) {
                     Rotation = 90f + 360f * i / laneCount,
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
@@ -29,7 +30,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
             {
                 new Container
                 {
-                    Children = lanes
+                    Children = Lanes
                 }
             };
         }
@@ -37,7 +38,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public override void Add(DrawableHitObject h)
         {
             //pass through to the correct lane
-            lanes[((HexNote)h).HitObject.Lane].Add(h);
+            Lanes[((HexNote)h).HitObject.Lane].Add(h);
         }
     }
 }

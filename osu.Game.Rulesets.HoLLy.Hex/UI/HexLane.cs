@@ -1,19 +1,23 @@
 ﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Input;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI.Scrolling;
 using OpenTK;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.UI
 {
     //TODO colorize. through IHasAccentColour?
     internal class HexLane : ScrollingPlayfield
     {
+        public new bool IsHovered => _laneBase.IsHovered;
         protected override Container<Drawable> Content { get; }
 
-        private int _index;
+        private readonly int _index;
+        private readonly HexLaneBase _laneBase;
 
         public HexLane(int index, int laneCount) : base(ScrollingDirection.Left)
         {
@@ -33,7 +37,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
                 },
-                new Polygon(laneCount)
+                _laneBase = new HexLaneBase(laneCount)
                 {
                     Name = "LaneBase",
                     Size = new Vector2(scaledHeight),   //should be same size as notes
@@ -55,6 +59,28 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         {
             h.Depth = (float)h.HitObject.StartTime;
             base.Add(h);
+        }
+
+        private class HexLaneBase : CircularContainer
+        {
+            public HexLaneBase(int laneCount)
+            {
+                Add(new Polygon(laneCount) {
+                    RelativeSizeAxes = Axes.Both,
+                    Colour = Color4.White,
+                });
+            }
+
+            protected override bool OnHover(InputState state)
+            {
+                Colour = Color4.SlateGray;
+                return base.OnHover(state);
+            }
+
+            protected override void OnHoverLost(InputState state)
+            {
+                Colour = Color4.White;
+            }
         }
     }
 }
