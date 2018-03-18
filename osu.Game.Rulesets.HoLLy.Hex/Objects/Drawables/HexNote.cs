@@ -1,7 +1,5 @@
-﻿using osu.Framework.Allocation;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Logging;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.HoLLy.Hex.UI;
 using osu.Game.Rulesets.Judgements;

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using osu.Game.Tests.Visual;
+﻿using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Tests
 {
