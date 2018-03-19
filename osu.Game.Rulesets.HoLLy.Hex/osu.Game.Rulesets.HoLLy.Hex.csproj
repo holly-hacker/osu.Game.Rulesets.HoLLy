@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\ppy.OpenTK.3.0.13\lib\net45\OpenTK.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,10 +71,12 @@
     <ProjectReference Include="..\osu\osu-framework\osu.Framework\osu.Framework.csproj">
       <Project>{c76bf5b3-985e-4d39-95fe-97c9c879b83a}</Project>
       <Name>osu.Framework</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\osu\osu.Game\osu.Game.csproj">
       <Project>{2a66dd92-adb1-4994-89e2-c94e04acda0d}</Project>
       <Name>osu.Game</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
