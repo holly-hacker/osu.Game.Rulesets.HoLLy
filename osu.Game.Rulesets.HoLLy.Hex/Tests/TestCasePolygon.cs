@@ -75,6 +75,26 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Tests
                     Colour = Color4.Tomato
                 });
             }
+            
+            //rotating with bg
+            for (int i = minCount; i <= maxCount; i++) {
+                flow.Add(new Container {
+                    Children = new Drawable[] {
+                        new Circle {
+                            Size = new Vector2(size),
+                            Colour = Color4.DeepPink
+                        },
+                        new Polygon(i) {
+                            Size = new Vector2(size),
+                            Anchor = Anchor.Centre,
+                            Origin = Anchor.Centre,
+                            RelativePositionAxes = Axes.Both,
+                            OnUpdate = drawable => drawable.Rotation += (float)Time.Elapsed / 16f
+                        }
+                    },
+                    AutoSizeAxes = Axes.Both
+                });
+            }
 
             //in a circular container, stretched in Y
             for (int i = minCount; i <= maxCount; i++) {

@@ -21,8 +21,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes
         public override RectangleF BoundingBox => ToPolygon(LayoutRectangle, _sides).AABBFloat;
         //public override RectangleF BoundingBox => ToPolygon(ToParentSpace(LayoutRectangle), _sides).AABBFloat;
 
-        //TODO: this is horribly wrong, but polygon primitives can't be skewed yet
-        private static Primitives.Polygon ToPolygon(Quad q, int sides) => new Primitives.Polygon(q.Centre, q.Width/2, q.Height/2, sides);
+        private static Primitives.Polygon ToPolygon(Quad q, int sides) => new Primitives.Polygon(q, sides);
 
         public override bool Contains(Vector2 screenSpacePos) => ToPolygon(ScreenSpaceDrawQuad, _sides).Contains(screenSpacePos);
 
