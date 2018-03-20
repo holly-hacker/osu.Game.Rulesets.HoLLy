@@ -22,7 +22,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Beatmaps
             Debug.Assert(lane >= 0);
             Debug.Assert(lane < laneCount);
 
-            yield return new HexHitObject(lane, laneCount, original);
+            yield return new HexHitObject(lane, laneCount, original) {
+                Samples = original.Samples,
+                SampleControlPoint = original.SampleControlPoint
+            };
         }
     }
 }
