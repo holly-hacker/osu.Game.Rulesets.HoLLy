@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\TestCaseHexLane.cs" />
     <Compile Include="Tests\TestCaseHexPlayer.cs" />
+    <Compile Include="Tests\TestCasePlayfield.cs" />
     <Compile Include="Tests\TestCasePolygon.cs" />
     <Compile Include="UI\HexLane.cs" />
     <Compile Include="UI\HexPlayfield.cs" />
