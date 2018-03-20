@@ -35,9 +35,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
             InternalChildren = new Drawable[]
             {
                 _lanePath = new Container {
-                    Child = new Box
-                    {
-                        Name = "LanePath",
+                    Name = "LanePathContainer",
+                    Child = new Box {
+                        Name = "LanePathBox",
                         RelativeSizeAxes = Axes.Both
                     },
                     Height = 3,         //thickness of the bar
