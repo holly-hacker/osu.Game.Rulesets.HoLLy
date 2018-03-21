@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
             //at the moment the note is programmed, check if we're holding in the correct lane
             if (Time.Current >= HitObject.StartTime) {
                 AddJudgement(_lane.IsHovered 
-                    ? new Judgement {Result = HitResult.Great} 
+                    ? new Judgement {Result = HitResult.Perfect} 
                     : new Judgement {Result = HitResult.Miss});
             }
         }

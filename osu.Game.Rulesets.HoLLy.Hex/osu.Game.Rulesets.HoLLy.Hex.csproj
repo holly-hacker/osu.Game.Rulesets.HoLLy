@@ -58,6 +58,7 @@
     <Compile Include="Objects\Drawables\HexNote.cs" />
     <Compile Include="Objects\HexHitObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scoring\HexScoreProcessor.cs" />
     <Compile Include="Tests\TestCaseHexLane.cs" />
     <Compile Include="Tests\TestCaseHexPlayer.cs" />
     <Compile Include="Tests\TestCasePlayfield.cs" />
