@@ -2,9 +2,5 @@
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Mods
 {
-    internal class HexModNoFail : ModNoFail
-    {
-        //TODO: implement
-        public override bool HasImplementation => false;
-    }
+    internal class HexModNoFail : ModNoFail { }
 }
