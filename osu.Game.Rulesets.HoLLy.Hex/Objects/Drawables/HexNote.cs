@@ -22,8 +22,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
             Origin = Anchor.Centre;
 
             Size = new Vector2(Utils.GetHitobjectSize(laneCount));
-            
-            Add(new CircularContainer
+
+            AddInternal(new CircularContainer
             {
                 Children = new Drawable[] {
                     new Polygon(laneCount) {
