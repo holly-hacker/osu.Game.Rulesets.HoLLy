@@ -31,10 +31,24 @@ namespace osu.Game.Rulesets.HoLLy.Hex
             switch (type) {
                 case ModType.DifficultyReduction:
                     return new Mod[] {
-                        new HexModNoFail()
+                        new HexModNoFail(),
+                        new MultiMod {
+                            Mods = new Mod[] {
+                                new HexModHalfTime(), 
+                                new HexModDaycore(), 
+                            }
+                        }
                     };
                 case ModType.DifficultyIncrease:
-                    return new Mod[0];
+                    return new Mod[] {
+                        new HexModPerfect(),
+                        new MultiMod {
+                            Mods = new Mod[] {
+                                new HexModDoubleTime(),
+                                new HexModNightcore(),
+                            }
+                        }
+                    };
                 case ModType.Special:
                     return new Mod[0];
                 default:

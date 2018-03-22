@@ -54,7 +54,12 @@
     <Compile Include="HexDifficultyCalculator.cs" />
     <Compile Include="HexInputManager.cs" />
     <Compile Include="HexRuleset.cs" />
+    <Compile Include="Mods\HexModDaycore.cs" />
+    <Compile Include="Mods\HexModDoubleTime.cs" />
+    <Compile Include="Mods\HexModHalfTime.cs" />
+    <Compile Include="Mods\HexModNightcore.cs" />
     <Compile Include="Mods\HexModNoFail.cs" />
+    <Compile Include="Mods\HexModPerfect.cs" />
     <Compile Include="Objects\Drawables\HexNote.cs" />
     <Compile Include="Objects\HexHitObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
