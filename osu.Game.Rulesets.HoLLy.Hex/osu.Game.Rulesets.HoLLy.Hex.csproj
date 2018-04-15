@@ -1,100 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F1345495-8237-4DC4-ADD3-5F48855C81B9}</ProjectGuid>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Project">
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>osu.Game.Rulesets.HoLLy.Hex</RootNamespace>
-    <AssemblyName>osu.Game.Rulesets.HoLLy.Hex</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Description>osu!Hex, an osu!lazer ruleset by HoLLy</Description>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <ItemGroup>
+    <ProjectReference Include="..\osu\osu.Game\osu.Game.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.2</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\packages\ppy.OpenTK.3.0.13\lib\net45\OpenTK.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Beatmaps\HexBeatmap.cs" />
-    <Compile Include="Beatmaps\HexBeatmapConverter.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Graphics\Primitives\Polygon.cs" />
-    <Compile Include="Graphics\Shapes\Polygon.cs" />
-    <Compile Include="HexDifficultyCalculator.cs" />
-    <Compile Include="HexInputManager.cs" />
-    <Compile Include="HexRuleset.cs" />
-    <Compile Include="Mods\HexModDaycore.cs" />
-    <Compile Include="Mods\HexModDoubleTime.cs" />
-    <Compile Include="Mods\HexModHalfTime.cs" />
-    <Compile Include="Mods\HexMultiModLaneCount.cs" />
-    <Compile Include="Mods\HexModNightcore.cs" />
-    <Compile Include="Mods\HexModNoFail.cs" />
-    <Compile Include="Mods\HexModPerfect.cs" />
-    <Compile Include="Objects\Drawables\HexNote.cs" />
-    <Compile Include="Objects\HexHitObject.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scoring\HexScoreProcessor.cs" />
-    <Compile Include="Tests\TestCaseHexLane.cs" />
-    <Compile Include="Tests\TestCaseHexPlayer.cs" />
-    <Compile Include="Tests\TestCasePlayfield.cs" />
-    <Compile Include="Tests\TestCasePolygon.cs" />
-    <Compile Include="UI\HexLane.cs" />
-    <Compile Include="UI\HexPlayfield.cs" />
-    <Compile Include="UI\HexRulesetContainer.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Utils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\osu\osu-framework\osu.Framework\osu.Framework.csproj">
-      <Project>{c76bf5b3-985e-4d39-95fe-97c9c879b83a}</Project>
-      <Name>osu.Framework</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\osu\osu.Game\osu.Game.csproj">
-      <Project>{2a66dd92-adb1-4994-89e2-c94e04acda0d}</Project>
-      <Name>osu.Game</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="OpenTK.dll.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Textures\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
