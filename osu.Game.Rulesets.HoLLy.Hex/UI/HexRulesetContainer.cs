@@ -19,11 +19,11 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 
         public override PassThroughInputManager CreateInputManager() => new HexInputManager(Ruleset.RulesetInfo, 0, SimultaneousBindingMode.None);
 
-        protected override Playfield CreatePlayfield() => new HexPlayfield(WorkingBeatmap.Beatmap.GetLaneCount());
+        protected override Playfield CreatePlayfield() => new HexPlayfield(Beatmap.GetLaneCount());
 
         protected override BeatmapConverter<HexHitObject> CreateBeatmapConverter() => new HexBeatmapConverter();
 
-        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(Playfield.Lanes[h.Lane], h, WorkingBeatmap.Beatmap.GetLaneCount());
+        protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(Playfield.Lanes[h.Lane], h, Beatmap.GetLaneCount());
 
         public override ScoreProcessor CreateScoreProcessor() => new HexScoreProcessor(this);
     }

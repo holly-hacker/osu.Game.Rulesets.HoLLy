@@ -50,7 +50,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex
                         }
                     };
                 case ModType.Special:
-                    return new Mod[0];
+                    return new Mod[] {
+                        new HexMultiModLaneCount()
+                    };
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

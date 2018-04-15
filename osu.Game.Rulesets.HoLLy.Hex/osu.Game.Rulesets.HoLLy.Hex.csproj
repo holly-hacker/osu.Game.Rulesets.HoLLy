@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Beatmaps\HexBeatmap.cs" />
     <Compile Include="Beatmaps\HexBeatmapConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Graphics\Primitives\Polygon.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Mods\HexModDaycore.cs" />
     <Compile Include="Mods\HexModDoubleTime.cs" />
     <Compile Include="Mods\HexModHalfTime.cs" />
+    <Compile Include="Mods\HexMultiModLaneCount.cs" />
     <Compile Include="Mods\HexModNightcore.cs" />
     <Compile Include="Mods\HexModNoFail.cs" />
     <Compile Include="Mods\HexModPerfect.cs" />

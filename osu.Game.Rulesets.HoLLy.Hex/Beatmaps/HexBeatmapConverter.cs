@@ -10,13 +10,17 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Beatmaps
 {
     internal class HexBeatmapConverter : BeatmapConverter<HexHitObject>
     {
+        public int? CustomLaneCount = null;
+
         protected override IEnumerable<Type> ValidConversionTypes => new[] {typeof(IHasXPosition)};
+
+        protected override Beatmap<HexHitObject> CreateBeatmap() => new HexBeatmap {LaneCount = CustomLaneCount};
 
         protected override IEnumerable<HexHitObject> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
             float x = ((IHasXPosition)original).X;
 
-            int laneCount = beatmap.GetLaneCount();
+            int laneCount = CustomLaneCount ?? beatmap.GetLaneCount();
             int lane = (int)(x / (512f + 1) * laneCount);
 
             Debug.Assert(lane >= 0);
