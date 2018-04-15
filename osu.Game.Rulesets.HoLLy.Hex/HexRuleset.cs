@@ -17,12 +17,12 @@ namespace osu.Game.Rulesets.HoLLy.Hex
         public ResourceStore<byte[]> ResourceStore;
         public TextureStore TextureStore;
 
-        public override string Description => "osu!Hex";
+        public override string Description => "Polygon";
         public override string ShortName => "holly.hex";
 
         public HexRuleset(RulesetInfo f = null) : base(f)
         {
-            ResourceStore = new NamespacedResourceStore<byte[]>(new DllResourceStore("osu.Game.Rulesets.HoLLy.Hex.dll"), "Resources");
+            ResourceStore = new NamespacedResourceStore<byte[]>(new DllResourceStore("osu.Game.Rulesets.HoLLy.Polygon.dll"), "Resources");
             TextureStore = new TextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
         }
 

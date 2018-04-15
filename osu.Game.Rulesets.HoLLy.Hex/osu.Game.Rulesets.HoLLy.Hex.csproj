@@ -11,5 +11,6 @@
   </ItemGroup>
   <PropertyGroup>
     <LangVersion>7.2</LangVersion>
+    <AssemblyName>osu.Game.Rulesets.HoLLy.Polygon</AssemblyName>
   </PropertyGroup>
 </Project>
