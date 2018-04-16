@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using Humanizer;
 using osu.Game.Beatmaps;
+using osu.Game.Graphics;
 using osu.Game.Rulesets.HoLLy.Hex.Beatmaps;
 using osu.Game.Rulesets.HoLLy.Hex.Objects;
 using osu.Game.Rulesets.Mods;
@@ -8,22 +10,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
 {
     internal class HexMultiModLaneCount : MultiMod
     {
-        /*
-        //does not work because each mod needs its own type
-        public HexMultiModLaneCount(int min, int max)
-        {
-            Debug.Assert(min >= Constants.LanesMin && min <= Constants.LanesMax);
-            Debug.Assert(max >= Constants.LanesMin && max <= Constants.LanesMax);
-            Debug.Assert(max >= min);
-
-            Mods = Enumerable.Range(min, max - min + 1).Select(x => new HexModLaneCount(x)).Cast<Mod>().ToArray();
-        }
-        */
-
         public HexMultiModLaneCount()
         {
-
-            Mods = new HexModLaneCount[] {
+            Mods = new Mod[] {
                 new HexModLaneCount3(), 
                 new HexModLaneCount4(), 
                 new HexModLaneCount5(), 
@@ -48,7 +37,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
     internal abstract class HexModLaneCount : Mod, IApplicableToBeatmapConverter<HexHitObject>
     {
         private readonly int _lanes;
-        public override string Name => $"{_lanes} Lanes";
+        public override string Name => $"{_lanes.ToWords().Titleize()} {(_lanes == 1 ? "Lane" : "Lanes")}";
         public override string ShortenedName => $"L{_lanes}";
         public override double ScoreMultiplier => 0;
         public override ModType Type => ModType.Special;

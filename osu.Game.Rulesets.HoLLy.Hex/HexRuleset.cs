@@ -31,6 +31,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex
             switch (type) {
                 case ModType.DifficultyReduction:
                     return new Mod[] {
+                        new HexModEasy(),
                         new HexModNoFail(),
                         new MultiMod {
                             Mods = new Mod[] {
@@ -41,17 +42,26 @@ namespace osu.Game.Rulesets.HoLLy.Hex
                     };
                 case ModType.DifficultyIncrease:
                     return new Mod[] {
+                        new HexModHardRock(),
                         new HexModPerfect(),
                         new MultiMod {
                             Mods = new Mod[] {
                                 new HexModDoubleTime(),
                                 new HexModNightcore(),
                             }
-                        }
+                        },
+                        new MultiMod {
+                            Mods = new Mod[] {
+                                new HexModHidden(),
+                                new HexModFadeIn(),
+                            }
+                        },
                     };
                 case ModType.Special:
                     return new Mod[] {
-                        new HexMultiModLaneCount()
+                        new HexMultiModLaneCount(),
+                        new HexModRelax(),
+                        new HexModMaiMai(),
                     };
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
