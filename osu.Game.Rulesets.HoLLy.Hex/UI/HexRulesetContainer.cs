@@ -16,9 +16,11 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public HexRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap) 
             : base(ruleset, workingBeatmap) { }
 
+        public bool BiggerBase { get; set; }
+
         public override PassThroughInputManager CreateInputManager() => new HexInputManager(Ruleset.RulesetInfo, 0, SimultaneousBindingMode.None);
 
-        protected override Playfield CreatePlayfield() => new HexPlayfield(Beatmap.GetLaneCount());
+        protected override Playfield CreatePlayfield() => new HexPlayfield(Beatmap.GetLaneCount(), BiggerBase);
 
         protected override DrawableHitObject<HexHitObject> GetVisualRepresentation(HexHitObject h) => new HexNote(Playfield.Lanes[h.Lane], h, Beatmap.GetLaneCount());
 

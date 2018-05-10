@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
     {
         public readonly HexLane[] Lanes;
 
-        public HexPlayfield(int laneCount) : base(ScrollingDirection.Left)
+        public HexPlayfield(int laneCount, bool biggerBase = false) : base(ScrollingDirection.Left)
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.TopLeft;
@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
             //create lanes
             Lanes = new HexLane[laneCount];
             for (int i = 0; i < laneCount; i++) {
-                AddNested(Lanes[i] = new HexLane(i, laneCount) {
+                AddNested(Lanes[i] = new HexLane(i, laneCount, biggerBase) {
                     Rotation = 90f + 360f * i / laneCount,
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,

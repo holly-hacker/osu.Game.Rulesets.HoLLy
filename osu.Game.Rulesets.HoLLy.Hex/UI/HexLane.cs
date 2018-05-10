@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         private readonly Color4 _laneColor;
         private readonly float _scaledHeight;
 
-        public HexLane(int index, int laneCount) : base(ScrollingDirection.Left)
+        public HexLane(int index, int laneCount, bool biggerBase = false) : base(ScrollingDirection.Left)
         {
             _index = index;
             _laneCount = laneCount;
@@ -53,6 +53,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                         Radius = _scaledHeight * 0.15f,
                     }
                 },
+                
+                // TODO: use biggerBase to put a different lane base here, which is a triangle that stretches to the center
                 _laneBase = new HexLaneBase(this)
                 {
                     Name = "LaneBase",
@@ -91,6 +93,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
             {
                 _parent = parent;
                 _laneColor = parent._laneColor;
+
                 Add(_poly = new Polygon(parent._laneCount) {
                     RelativeSizeAxes = Axes.Both,
                     Colour = ColorIdle,
