@@ -14,9 +14,11 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Beatmaps
 
         protected override IEnumerable<Type> ValidConversionTypes => new[] {typeof(IHasXPosition)};
 
+        public HexBeatmapConverter(IBeatmap beatmap) : base(beatmap) { }
+
         protected override Beatmap<HexHitObject> CreateBeatmap() => new HexBeatmap {LaneCount = CustomLaneCount};
 
-        protected override IEnumerable<HexHitObject> ConvertHitObject(HitObject original, Beatmap beatmap)
+        protected override IEnumerable<HexHitObject> ConvertHitObject(HitObject original, IBeatmap beatmap)
         {
             float x = ((IHasXPosition)original).X;
 

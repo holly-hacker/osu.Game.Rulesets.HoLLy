@@ -22,8 +22,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "osu.Game.Tests", "osu\osu.Game.Tests\osu.Game.Tests.csproj", "{54377672-20B1-40AF-8087-5CF73BF3953A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "osu.Desktop", "osu\osu.Desktop\osu.Desktop.csproj", "{419659FD-72EA-4678-9EB8-B22A746CED70}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F1345495-8237-4DC4-ADD3-5F48855C81B9} = {F1345495-8237-4DC4-ADD3-5F48855C81B9}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Game.Rulesets.HoLLy.Hex", "osu.Game.Rulesets.HoLLy.Hex\osu.Game.Rulesets.HoLLy.Hex.csproj", "{F1345495-8237-4DC4-ADD3-5F48855C81B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "osu.Game.Rulesets.HoLLy.Hex", "osu.Game.Rulesets.HoLLy.Hex\osu.Game.Rulesets.HoLLy.Hex.csproj", "{F1345495-8237-4DC4-ADD3-5F48855C81B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

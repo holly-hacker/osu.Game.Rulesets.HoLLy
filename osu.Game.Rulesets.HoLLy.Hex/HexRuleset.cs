@@ -5,6 +5,7 @@ using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics;
+using osu.Game.Rulesets.HoLLy.Hex.Beatmaps;
 using osu.Game.Rulesets.HoLLy.Hex.Mods;
 using osu.Game.Rulesets.HoLLy.Hex.UI;
 using osu.Game.Rulesets.Mods;
@@ -68,9 +69,11 @@ namespace osu.Game.Rulesets.HoLLy.Hex
             }
         }
 
-        public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null) => new HexDifficultyCalculator();
+        public override DifficultyCalculator CreateDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null) => new HexDifficultyCalculator(beatmap, mods);
 
-        public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap, bool isForCurrentRuleset) => new HexRulesetContainer(this, beatmap, isForCurrentRuleset);
+        public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap) => new HexRulesetContainer(this, beatmap);
+
+        public override IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap) => new HexBeatmapConverter(beatmap);
 
         public override Drawable CreateIcon() => new SpriteIcon {Icon = FontAwesome.fa_futbol_o};
     }

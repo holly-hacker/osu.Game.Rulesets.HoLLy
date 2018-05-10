@@ -34,7 +34,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
         private class HexModLaneCount10: HexModLaneCount { public HexModLaneCount10(): base(10){ } }
     }
 
-    internal abstract class HexModLaneCount : Mod, IApplicableToBeatmapConverter<HexHitObject>
+    //internal abstract class HexModLaneCount : Mod, IApplicableToBeatmapConverter<HexHitObject>
+    internal abstract class HexModLaneCount : Mod, IApplicableToBeatmapConverter
     {
         private readonly int _lanes;
         public override string Name => $"{_lanes.ToWords().Titleize()} {(_lanes == 1 ? "Lane" : "Lanes")}";
@@ -51,7 +52,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
 
             _lanes = lanes;
         }
-
-        public void ApplyToBeatmapConverter(BeatmapConverter<HexHitObject> beatmapConverter) => ((HexBeatmapConverter)beatmapConverter).CustomLaneCount = _lanes;
+        public void ApplyToBeatmapConverter(IBeatmapConverter beatmapConverter)
+        {
+            if (beatmapConverter is HexBeatmapConverter c)
+                c.CustomLaneCount = _lanes;
+        }
     }
 }
