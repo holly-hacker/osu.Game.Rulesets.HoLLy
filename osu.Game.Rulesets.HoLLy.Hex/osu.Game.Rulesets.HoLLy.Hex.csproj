@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Project">
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Description>osu!Hex, an osu!lazer ruleset by HoLLy</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\osu\osu.Game\osu.Game.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <LangVersion>7.2</LangVersion>
+    <AssemblyName>osu.Game.Rulesets.HoLLy.Polygon</AssemblyName>
+  </PropertyGroup>
+</Project>
