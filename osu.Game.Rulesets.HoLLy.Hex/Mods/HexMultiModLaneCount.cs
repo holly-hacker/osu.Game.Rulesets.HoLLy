@@ -1,28 +1,17 @@
 ﻿using System.Diagnostics;
 using Humanizer;
 using osu.Game.Beatmaps;
-using osu.Game.Graphics;
 using osu.Game.Rulesets.HoLLy.Hex.Beatmaps;
-using osu.Game.Rulesets.HoLLy.Hex.Objects;
 using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Mods
 {
     internal class HexMultiModLaneCount : MultiMod
     {
-        public HexMultiModLaneCount()
-        {
-            Mods = new Mod[] {
-                new HexModLaneCount3(), 
-                new HexModLaneCount4(), 
-                new HexModLaneCount5(), 
-                new HexModLaneCount6(), 
-                new HexModLaneCount7(), 
-                new HexModLaneCount8(), 
-                new HexModLaneCount9(), 
-                new HexModLaneCount10(), 
-            };
-        }
+        public HexMultiModLaneCount() : base(
+            new HexModLaneCount3(), new HexModLaneCount4(), new HexModLaneCount5(), 
+            new HexModLaneCount6(), new HexModLaneCount7(), new HexModLaneCount8(), 
+            new HexModLaneCount9(), new HexModLaneCount10()) { }
 
         private class HexModLaneCount3 : HexModLaneCount { public HexModLaneCount3() : base(3) { } }
         private class HexModLaneCount4 : HexModLaneCount { public HexModLaneCount4() : base(4) { } }

@@ -5,6 +5,7 @@ using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics;
+using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.HoLLy.Hex.Beatmaps;
 using osu.Game.Rulesets.HoLLy.Hex.Mods;
 using osu.Game.Rulesets.HoLLy.Hex.UI;
@@ -34,29 +35,14 @@ namespace osu.Game.Rulesets.HoLLy.Hex
                     return new Mod[] {
                         new HexModEasy(),
                         new HexModNoFail(),
-                        new MultiMod {
-                            Mods = new Mod[] {
-                                new HexModHalfTime(), 
-                                new HexModDaycore(), 
-                            }
-                        }
+                        new MultiMod(new HexModHalfTime(), new HexModDaycore())
                     };
                 case ModType.DifficultyIncrease:
                     return new Mod[] {
                         new HexModHardRock(),
                         new HexModPerfect(),
-                        new MultiMod {
-                            Mods = new Mod[] {
-                                new HexModDoubleTime(),
-                                new HexModNightcore(),
-                            }
-                        },
-                        new MultiMod {
-                            Mods = new Mod[] {
-                                new HexModHidden(),
-                                new HexModFadeIn(),
-                            }
-                        },
+                        new MultiMod(new HexModDoubleTime(), new HexModNightcore()),
+                        new MultiMod(new HexModHidden(), new HexModFadeIn()),
                     };
                 case ModType.Special:
                     return new Mod[] {
@@ -69,7 +55,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex
             }
         }
 
-        public override DifficultyCalculator CreateDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null) => new HexDifficultyCalculator(beatmap, mods);
+        public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) => new HexDifficultyCalculator(this, beatmap);
 
         public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap) => new HexRulesetContainer(this, beatmap);
 
