@@ -14,7 +14,7 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.HoLLy.Hex
 {
-    internal class HexRuleset : Ruleset
+    public class HexRuleset : Ruleset
     {
         public ResourceStore<byte[]> ResourceStore;
         public TextureStore TextureStore;
