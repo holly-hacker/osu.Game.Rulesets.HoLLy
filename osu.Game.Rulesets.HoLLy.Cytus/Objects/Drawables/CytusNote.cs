@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
         {
             Alpha = 0;  // Start transparent
 
-            Size = new Vector2(32f);
+            Size = new Vector2(48f);
             
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
