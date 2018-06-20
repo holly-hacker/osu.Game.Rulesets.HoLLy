@@ -44,12 +44,12 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 
         private void UpdatePreemptState()
         {
-            this.FadeIn(HitObject.TimePreempt / 2);
+            this.FadeIn(HitObject.TimePreempt * (2f/3f));
         }
 
         private void UpdateCurrentState(ArmedState state)
         {
-            const double timeFadeHit = 250, timeFadeMiss = 400;
+            const double timeFadeHit = 100, timeFadeMiss = 200;
 
             switch (state) {
                 case ArmedState.Idle:

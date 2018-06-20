@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects
             X = x;
 
             // TODO: this should be dependent on BPM
-            TimePreempt = 1000;
+            TimePreempt = 750;
         }
     }
 }

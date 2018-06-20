@@ -39,16 +39,9 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables
         {
             base.Update();
 
-            int scanNumber = _beatIndex / _beatsPerScan;    // Which scan this is, taking _beatCount into account
-            int beatsPassed = _beatIndex % _beatsPerScan;   // How many beats have passed this scan
-            bool reverse = Math.Abs(scanNumber) % 2 == 1;   // Does this scan go up instead of down?
-
             float beatPercent = (float)(TimeSinceLastBeat / (TimeSinceLastBeat + TimeUntilNextBeat));   // How far are we into this beat
-
-
-            float percent = (beatsPassed + beatPercent) / _beatsPerScan;
-
-            Y = reverse ? 1f - percent : percent;
+            
+            Y = RhythmHelper.GetScanPosition(_beatIndex, _beatsPerScan, beatPercent);
         }
     }
 }
