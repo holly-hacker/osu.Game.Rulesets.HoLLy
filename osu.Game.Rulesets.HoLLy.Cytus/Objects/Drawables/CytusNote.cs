@@ -48,7 +48,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             });
         }
 
-        protected override bool OnClick(InputState state) => UpdateJudgement(true);
+        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args) => UpdateJudgement(true);
 
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)
         {
