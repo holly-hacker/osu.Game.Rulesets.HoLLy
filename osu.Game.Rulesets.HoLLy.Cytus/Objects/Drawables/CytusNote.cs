@@ -3,9 +3,11 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
-using OpenTK.Graphics;
+using osu.Framework.Input;
+using osu.Game.Rulesets.Scoring;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 {
@@ -44,7 +46,25 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                     }
                 }
             });
-            
+        }
+
+        protected override bool OnClick(InputState state) => UpdateJudgement(true);
+
+        protected override void CheckForJudgements(bool userTriggered, double timeOffset)
+        {
+            // TODO: use own judgement class, probably
+
+            if (!userTriggered) {
+                if (!HitObject.HitWindows.CanBeHit(timeOffset))
+                    AddJudgement(new Judgement { Result = HitResult.Miss });
+                return;
+            }
+
+            var result = HitObject.HitWindows.ResultFor(timeOffset);
+            if (result == HitResult.None)
+                return;
+
+            AddJudgement(new Judgement { Result = result });
         }
         
         protected override void UpdateState(ArmedState state)
@@ -73,22 +93,19 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 
         private void UpdateCurrentState(ArmedState state)
         {
-            const double timeFadeHit = 100, timeFadeMiss = 200;
+            const double timeFadeHit = 100, timeFadeMiss = 500;
 
             switch (state) {
                 case ArmedState.Idle:
-                    this.ScaleTo(0.5f, timeFadeMiss)
-                        .FadeOut(timeFadeMiss)
-                        .Expire();
                     break;
                 case ArmedState.Hit:
-                    this.ScaleTo(2, timeFadeHit / 3, Easing.OutCubic)
+                    this.ScaleTo(1.25f, timeFadeHit, Easing.OutCubic)
                         .FadeOut(timeFadeHit)
                         .Expire();
                     break;
                 case ArmedState.Miss:
-                    this.ScaleTo(0.5f, timeFadeMiss, Easing.InCubic)
-                        .FadeOut(timeFadeMiss)
+                    this.FadeOut(timeFadeMiss, Easing.OutCubic)
+                        .ScaleTo(0.5f, timeFadeMiss)
                         .Expire();
                     break;
             }
