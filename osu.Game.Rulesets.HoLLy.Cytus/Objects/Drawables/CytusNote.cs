@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -9,7 +11,9 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 {
     internal class CytusNote : DrawableHitObject<CytusHitObject>
     {
-        public CytusNote(CytusHitObject hitObject) : base(hitObject)
+        private Sprite NoteBase, NoteCenter;
+
+        public CytusNote(CytusHitObject hitObject, TextureStore textures) : base(hitObject)
         {
             Alpha = 0;  // Start transparent
 
@@ -17,21 +21,38 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-
-            // Temporary, for now
-            AddInternal(new Circle {
-                Width = 1f,
-                Height = 1f,
-                RelativeSizeAxes = Axes.Both
+            
+            AddInternal(new CircularContainer {
+                Size = Vector2.One,
+                RelativeSizeAxes = Axes.Both,
+                Children = new [] {
+                    NoteBase = new Sprite {
+                        Texture = textures.Get("CytusNoteBase"),
+                        Size = Vector2.One,
+                        RelativeSizeAxes = Axes.Both,
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                    },
+                    NoteCenter = new Sprite {
+                        Texture = textures.Get("CytusNoteCenter"),
+                        Size = Vector2.One,
+                        RelativeSizeAxes = Axes.Both,
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Depth = -1,
+                        Scale = Vector2.Zero,
+                    }
+                }
             });
+            
         }
         
         protected override void UpdateState(ArmedState state)
         {
             double transformTime = HitObject.StartTime - HitObject.TimePreempt;
 
-            base.ApplyTransformsAt(transformTime, true);
-            base.ClearTransformsAfter(transformTime, true);
+            ApplyTransformsAt(transformTime, true);
+            ClearTransformsAfter(transformTime, true);
 
             using (BeginAbsoluteSequence(transformTime, true))
             {
@@ -44,7 +65,10 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 
         private void UpdatePreemptState()
         {
+            const int rotateTime = 2000;
             this.FadeIn(HitObject.TimePreempt * (2f/3f));
+            NoteBase.Spin(rotateTime, RotationDirection.Clockwise);
+            NoteCenter.ScaleTo(1, HitObject.TimePreempt, Easing.In);
         }
 
         private void UpdateCurrentState(ArmedState state)
@@ -59,13 +83,11 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                     break;
                 case ArmedState.Hit:
                     this.ScaleTo(2, timeFadeHit / 3, Easing.OutCubic)
-                        .FadeColour(Color4.Yellow, timeFadeHit / 3, Easing.OutQuint)
                         .FadeOut(timeFadeHit)
                         .Expire();
                     break;
                 case ArmedState.Miss:
                     this.ScaleTo(0.5f, timeFadeMiss, Easing.InCubic)
-                        .FadeColour(Color4.Red, timeFadeMiss, Easing.OutQuint)
                         .FadeOut(timeFadeMiss)
                         .Expire();
                     break;

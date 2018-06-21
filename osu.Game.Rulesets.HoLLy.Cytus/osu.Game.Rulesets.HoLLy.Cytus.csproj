@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Textures\CytusNoteBase.png" />
+    <EmbeddedResource Include="Resources\Textures\CytusNoteCenter.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\osu\osu.Game\osu.Game.csproj">
