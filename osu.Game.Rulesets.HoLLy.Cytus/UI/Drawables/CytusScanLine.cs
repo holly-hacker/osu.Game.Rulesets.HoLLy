@@ -1,5 +1,4 @@
-﻿using System;
-using osu.Framework.Audio.Track;
+﻿using osu.Framework.Audio.Track;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Beatmaps.ControlPoints;
@@ -11,6 +10,8 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables
     {
         private readonly int _beatsPerScan;
         private int _beatIndex = -1;
+
+        public override bool HandleMouseInput => false;
 
         public CytusScanLine(int beatsPerScan)
         {
