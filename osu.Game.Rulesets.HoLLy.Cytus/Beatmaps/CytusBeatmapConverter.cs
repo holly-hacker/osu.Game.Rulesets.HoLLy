@@ -24,6 +24,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
             float y = beatmap.GetScanPosition(original.StartTime, Constants.BeatsPerScan);
 
             // we have to determine if this is a slider or normal hitobject
+            // TODO: check for IHasRepeats
             if (original is IHasCurve ihc) {
                 CytusSliderTick lastTick;
                 double endTime = ihc.EndTime;
@@ -36,13 +37,22 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
                     Offset = Vector2.Zero
                 };
                 
-                var end = lastTick = new CytusSliderEnd(endTime, x + curve.PositionAt(1).X, beatmap.GetScanPosition(endTime, Constants.BeatsPerScan));
+                var end = lastTick = new CytusSliderEnd(endTime, x + curve.PositionAt(1).X, beatmap.GetScanPosition(endTime, Constants.BeatsPerScan)) {
+                    Samples = original.Samples,
+                    SampleControlPoint = original.SampleControlPoint
+                };
 
                 var ticks = new List<CytusSliderTick>();
                 for (double i = endTime - tickInterval; i >= time + tickInterval/2; i -= tickInterval)
-                    ticks.Add(lastTick = new CytusSliderTick(i, x + curve.PositionAt((i - time) / (endTime - time)).X, beatmap.GetScanPosition(i, Constants.BeatsPerScan), lastTick));
+                    ticks.Add(lastTick = new CytusSliderTick(i, x + curve.PositionAt((i - time) / (endTime - time)).X, beatmap.GetScanPosition(i, Constants.BeatsPerScan), lastTick) {
+                        Samples = original.Samples,
+                        SampleControlPoint = original.SampleControlPoint
+                    });
 
-                var start = new CytusSliderHead(original.StartTime, x, y, lastTick);
+                var start = new CytusSliderHead(original.StartTime, x, y, lastTick) {
+                    Samples = original.Samples,
+                    SampleControlPoint = original.SampleControlPoint
+                };
                 
                 yield return start;
                 foreach (var tick in ticks)
