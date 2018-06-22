@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
 
         protected override DrawableHitObject<CytusHitObject> GetVisualRepresentation(CytusHitObject obj)
         {
-            float x = obj.X - CytusPlayfield.BASE_SIZE.X / 2;
+            float x = obj.X - Constants.PlayfieldSizeX / 2;
             float y = Beatmap.GetScanPosition(obj.StartTime, Constants.BeatsPerScan);
 
             switch (obj) {

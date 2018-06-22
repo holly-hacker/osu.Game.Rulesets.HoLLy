@@ -2,6 +2,8 @@
 {
     internal static class Constants
     {
-        public static int BeatsPerScan = 4;
+        public const int BeatsPerScan = 4;
+        public const float PlayfieldSizeX = 512;
+        public const float PlayfieldSizeY = 384;
     }
 }

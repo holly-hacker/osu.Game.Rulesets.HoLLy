@@ -5,16 +5,14 @@ using osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables;
 using osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
-using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.UI
 {
     internal class CytusPlayfield : Playfield
     {
-        public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
         private IBeatmap _beatmap;
 
-        public CytusPlayfield(IBeatmap bm) : base(BASE_SIZE.X)
+        public CytusPlayfield(IBeatmap bm) : base(Constants.PlayfieldSizeX)
         {
             _beatmap = bm;
 

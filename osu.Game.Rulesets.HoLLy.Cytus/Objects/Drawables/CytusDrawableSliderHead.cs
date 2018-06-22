@@ -5,7 +5,6 @@ using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Input;
 using osu.Framework.Logging;
-using osu.Game.Rulesets.HoLLy.Cytus.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 
@@ -38,8 +37,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                         Scale = Vector2.Zero,
 
                         Rotation = hitObject.Next != null
-                            // TODO: I give up, look at this later
-                            ? (float)(-45f + Math.Atan2((hitObject.Next.Y - Y) * CytusPlayfield.BASE_SIZE.Y, hitObject.Next.X - X) * 180f/Math.PI)
+                            ? (float)(-45f + 90f + Math.Atan2((hitObject.Next.Y - HitObject.Y) * Constants.PlayfieldSizeY, hitObject.Next.X - HitObject.X) * 180f/Math.PI)
                             : -45f  // Shouldn't happen unless we're SliderEnd
                     }
                 }

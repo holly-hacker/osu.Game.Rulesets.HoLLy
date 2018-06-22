@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
-using osu.Game.Beatmaps.Timing;
 using osu.Game.Rulesets.HoLLy.Cytus.Objects;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
@@ -29,7 +28,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
                 CytusSliderTick lastTick;
                 double endTime = ihc.EndTime;
                 var tp = beatmap.ControlPointInfo.TimingPointAt(time);
-                double tickInterval = tp.BeatLength / (int)tp.TimeSignature * 2;
+                double tickInterval = tp.BeatLength / (int)tp.TimeSignature;
                 SliderCurve curve = ihc.Curve ?? new SliderCurve {
                     ControlPoints = ihc.ControlPoints, 
                     CurveType = ihc.CurveType, 
@@ -40,7 +39,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
                 var end = lastTick = new CytusSliderEnd(endTime, x + curve.PositionAt(1).X, beatmap.GetScanPosition(endTime, Constants.BeatsPerScan));
 
                 var ticks = new List<CytusSliderTick>();
-                for (double i = endTime - tickInterval; i >= time; i -= tickInterval)
+                for (double i = endTime - tickInterval; i >= time + tickInterval/2; i -= tickInterval)
                     ticks.Add(lastTick = new CytusSliderTick(i, x + curve.PositionAt((i - time) / (endTime - time)).X, beatmap.GetScanPosition(i, Constants.BeatsPerScan), lastTick));
 
                 var start = new CytusSliderHead(original.StartTime, x, y, lastTick);
