@@ -26,11 +26,16 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
 
         protected override Playfield CreatePlayfield() => new CytusPlayfield(Beatmap);
 
-        protected override DrawableHitObject<CytusHitObject> GetVisualRepresentation(CytusHitObject h)
+        protected override DrawableHitObject<CytusHitObject> GetVisualRepresentation(CytusHitObject obj)
         {
-            switch (h) {
-                    case CytusNote n: 
-                        return new CytusDrawableNote(n, _textures);
+            float x = obj.X - CytusPlayfield.BASE_SIZE.X / 2;
+            float y = Beatmap.GetScanPosition(obj.StartTime, Constants.BeatsPerScan);
+
+            switch (obj) {
+                    case CytusNote n:       return new CytusDrawableNote(n, x, y, _textures);
+                    case CytusSliderEnd e:  return new CytusDrawableSliderEnd(e, x, y, _textures);    // Order matters for slider pieces
+                    case CytusSliderTick t: return new CytusDrawableSliderTick(t, x, y, _textures);
+                    case CytusSliderHead h: return new CytusDrawableSliderHead(h, x, y, _textures);
                     default:
                         throw new Exception("Unexpected hitobject type");
             }

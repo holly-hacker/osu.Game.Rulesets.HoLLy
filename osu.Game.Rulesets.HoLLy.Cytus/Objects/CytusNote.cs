@@ -2,6 +2,6 @@
 {
     internal class CytusNote : CytusHitObject
     {
-        public CytusNote(double time, float x) : base(time, x) { }
+        public CytusNote(double time, float x, float y) : base(time, x, y) { }
     }
 }

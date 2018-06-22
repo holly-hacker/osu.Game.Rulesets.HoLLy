@@ -1,13 +1,29 @@
 ﻿using System.Linq;
+using osu.Framework.Graphics;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
+using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 {
     internal abstract class CytusDrawableHitObject : DrawableHitObject<CytusHitObject>
     {
-        protected CytusDrawableHitObject(CytusHitObject hitObject) : base(hitObject) { }
+        protected CytusDrawableHitObject(CytusHitObject hitObject, float x, float y) : base(hitObject)
+        {
+            Alpha = 0;  // Start transparent
+
+            Size = new Vector2(48f);    // TODO: calculate this
+            
+            Anchor = Anchor.Centre;
+            Origin = Anchor.Centre;
+            
+            RelativePositionAxes = Axes.Y;
+            RelativeSizeAxes = Axes.None;
+            
+            X = x;
+            Y = y;
+        }
         
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)
         {
