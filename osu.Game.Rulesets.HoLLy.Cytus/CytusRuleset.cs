@@ -35,6 +35,6 @@ namespace osu.Game.Rulesets.HoLLy.Cytus
 
         public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) => new CytusDifficultyCalculator(this, beatmap);
 
-        public override Drawable CreateIcon() => new SpriteIcon() { Icon = FontAwesome.fa_dot_circle_o };
+        public override Drawable CreateIcon() => new SpriteIcon { Icon = FontAwesome.fa_dot_circle_o };
     }
 }

@@ -29,7 +29,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
 
         public override void Add(DrawableHitObject h)
         {
-            if (!(h is CytusNote note))
+            if (!(h is CytusDrawableNote note))
                 throw new Exception("Unexpected hitobject type " + h.GetType().Name);
 
             note.X = note.HitObject.X - BASE_SIZE.X / 2;    // Because of the black magic in Origin/Anchor

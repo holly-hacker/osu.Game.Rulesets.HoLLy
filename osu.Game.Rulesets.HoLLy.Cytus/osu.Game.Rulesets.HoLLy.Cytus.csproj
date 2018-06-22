@@ -7,6 +7,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Textures\CytusNoteBase.png" />
     <EmbeddedResource Include="Resources\Textures\CytusNoteCenter.png" />
+    <EmbeddedResource Include="Resources\Textures\CytusSliderArrow.png" />
+    <EmbeddedResource Include="Resources\Textures\CytusSliderBase.png" />
   </ItemGroup>
 
   <ItemGroup>

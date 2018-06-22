@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
                 throw new Exception($"This hitobject of type {original.GetType().Name} is not a {nameof(IHasXPosition)}!");
 
             // For now, only use X position
-            yield return new CytusHitObject(original.StartTime, ((IHasXPosition)original).X) { 
+            yield return new CytusNote(original.StartTime, ((IHasXPosition)original).X) { 
                 Samples = original.Samples, 
                 SampleControlPoint = original.SampleControlPoint 
             };
