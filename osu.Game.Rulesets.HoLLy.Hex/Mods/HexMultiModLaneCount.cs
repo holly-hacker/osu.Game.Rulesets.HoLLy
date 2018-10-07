@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
         public override string Name => $"{_lanes.ToWords().Titleize()} {(_lanes == 1 ? "Lane" : "Lanes")}";
         public override string ShortenedName => $"L{_lanes}";
         public override double ScoreMultiplier => 0;
-        public override ModType Type => ModType.Special;
+        public override ModType Type => ModType.Conversion;
         public override string Description => $"Play with {_lanes} lanes!";
         public override bool Ranked => false;
 

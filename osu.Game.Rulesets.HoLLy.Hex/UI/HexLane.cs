@@ -3,6 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input;
+using osu.Framework.Input.Events;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI.Scrolling;
@@ -23,8 +24,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         private readonly Color4 _laneColor;
         private readonly float _scaledHeight;
 
-        public HexLane(int index, int laneCount, bool biggerBase = false) : base(ScrollingDirection.Left)
+        public HexLane(int index, int laneCount, bool biggerBase = false)
         {
+            Direction.Value = ScrollingDirection.Left;
+
             _index = index;
             _laneCount = laneCount;
             _laneColor = Utils.GetAccentColor(index, laneCount);
@@ -82,8 +85,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 
         private class HexLaneBase : CircularContainer
         {
-            private const double timeFadeIn = 200, timeFadeOut = 350;
-            private static readonly Color4 ColorIdle = Color4.DarkGray;
+            private const double TimeFadeIn = 200, TimeFadeOut = 350;
+            private static readonly Color4 colorIdle = Color4.DarkGray;
 
             private readonly HexLane _parent;
             private readonly Color4 _laneColor;
@@ -96,22 +99,24 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 
                 Add(_poly = new Polygon(parent._laneCount) {
                     RelativeSizeAxes = Axes.Both,
-                    Colour = ColorIdle,
+                    Colour = colorIdle,
                 });
             }
 
-            protected override bool OnHover(InputState state)
+            protected override bool OnHover(HoverEvent e)
             {
-                _poly.FadeColour(_laneColor.Darken(0.325f), timeFadeIn, Easing.OutCubic);
-                _parent._lanePath.FadeEdgeEffectTo(1f, timeFadeIn, Easing.OutCubic);
+                _poly.FadeColour(_laneColor.Darken(0.325f), TimeFadeIn, Easing.OutCubic);
+                _parent._lanePath.FadeEdgeEffectTo(1f, TimeFadeIn, Easing.OutCubic);
 
-                return base.OnHover(state);
+                return base.OnHover(e);
             }
 
-            protected override void OnHoverLost(InputState state)
+            protected override void OnHoverLost(HoverLostEvent e)
             {
-                _poly.FadeColour(ColorIdle, timeFadeOut, Easing.OutCubic);
-                _parent._lanePath.FadeEdgeEffectTo(0f, timeFadeOut, Easing.OutCubic);
+                _poly.FadeColour(colorIdle, TimeFadeOut, Easing.OutCubic);
+                _parent._lanePath.FadeEdgeEffectTo(0f, TimeFadeOut, Easing.OutCubic);
+
+                base.OnHoverLost(e);
             }
         }
     }

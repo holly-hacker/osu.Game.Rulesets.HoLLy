@@ -1,4 +1,5 @@
-﻿using osu.Game.Rulesets.Objects;
+﻿using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects
@@ -19,5 +20,6 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects
             TimePreempt = 750;
         }
 
+        public override Judgement CreateJudgement() => new Judgement();
     }
 }

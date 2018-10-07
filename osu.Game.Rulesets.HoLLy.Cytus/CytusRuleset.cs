@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus
         public CytusRuleset(RulesetInfo rulesetInfo = null) : base(rulesetInfo)
         {
             ResourceStore = new NamespacedResourceStore<byte[]>(new DllResourceStore("osu.Game.Rulesets.HoLLy.Cytus.dll"), "Resources");
-            TextureStore = new TextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
+            TextureStore = new TextureStore(new TextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
         }
 
         public override IEnumerable<Mod> GetModsFor(ModType type) => new Mod[0];

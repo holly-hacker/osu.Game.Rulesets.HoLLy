@@ -2,15 +2,17 @@
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
-using osu.Framework.Input;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 {
     internal class CytusDrawableNote : CytusDrawableHitObject
     {
         private readonly Sprite _noteBase, _noteCenter;
+        
+        public override bool HandlePositionalInput => true;
 
         public CytusDrawableNote(CytusNote hitObject, float x, float y, TextureStore textures) : base(hitObject, x, y)
         {
@@ -38,7 +40,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             });
         }
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args) => UpdateJudgement(true);
+        protected override bool OnMouseDown(MouseDownEvent e) => UpdateResult(true);
 
         protected override void UpdatePreemptState()
         {

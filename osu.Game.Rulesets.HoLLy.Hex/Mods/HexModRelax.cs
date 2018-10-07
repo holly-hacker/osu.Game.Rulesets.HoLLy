@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
         public override string ShortenedName => "RX";
         public override string Description => "You no longer have aim as much!";
         public override double ScoreMultiplier => 0.0;
-        public override ModType Type => ModType.Special;
+        public override ModType Type => ModType.Automation;
         public override bool Ranked => false;
         public override bool HasImplementation => false;
     }

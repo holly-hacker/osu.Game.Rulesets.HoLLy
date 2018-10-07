@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes
             protected override void Blit(Action<TexturedVertex2D> vertexAction)
             {
                 foreach(var t in ToPolygon(ScreenSpaceDrawQuad, _sides).Triangles)
-                    Texture.DrawTriangle(t, DrawInfo.Colour);
+                    Texture.DrawTriangle(t, DrawColourInfo.Colour);
             }
         }
     }

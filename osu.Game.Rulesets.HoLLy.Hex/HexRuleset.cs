@@ -25,7 +25,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex
         public HexRuleset(RulesetInfo f = null) : base(f)
         {
             ResourceStore = new NamespacedResourceStore<byte[]>(new DllResourceStore("osu.Game.Rulesets.HoLLy.Polygon.dll"), "Resources");
-            TextureStore = new TextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
+            TextureStore = new TextureStore(new TextureLoaderStore(new NamespacedResourceStore<byte[]>(ResourceStore, "Textures")));
         }
 
         public override IEnumerable<Mod> GetModsFor(ModType type)
@@ -44,12 +44,16 @@ namespace osu.Game.Rulesets.HoLLy.Hex
                         new MultiMod(new HexModDoubleTime(), new HexModNightcore()),
                         new MultiMod(new HexModHidden(), new HexModFadeIn()),
                     };
-                case ModType.Special:
+                case ModType.Conversion:
                     return new Mod[] {
                         new HexMultiModLaneCount(),
-                        new HexModRelax(),
                         new HexModMaiMai(),
                     };
+                case ModType.Automation:
+                    return new Mod[] {
+                        new HexModRelax(),
+                    };
+                case ModType.Fun: return new Mod[0];
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

@@ -1,6 +1,5 @@
 ﻿using osu.Framework.Graphics.Textures;
-using osu.Framework.Input;
-using osu.Game.Rulesets.Judgements;
+using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Scoring;
 using OpenTK.Input;
 
@@ -13,7 +12,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             Size /= 1.5f;
         }
         
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args) => false;
+        protected override bool OnMouseDown(MouseDownEvent e) => false;
 
         protected override void Update()
         {
@@ -24,9 +23,9 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                 // Check if user is holding
                 if (IsHovered && Mouse.GetState().IsAnyButtonDown)    // HACK: should check for IsHeldDown/IsPressed or something
                     // Great
-                    AddJudgement(new Judgement { Result = HitResult.Perfect });
+                    ApplyResult(r => r.Type = HitResult.Perfect);
                 else
-                    AddJudgement(new Judgement { Result = HitResult.Miss });
+                    ApplyResult(r => r.Type = HitResult.Miss);
             }
         }
     }

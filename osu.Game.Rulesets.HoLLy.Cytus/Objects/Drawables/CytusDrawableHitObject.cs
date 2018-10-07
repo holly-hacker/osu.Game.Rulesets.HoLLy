@@ -1,6 +1,5 @@
-﻿using System.Linq;
+﻿using System;
 using osu.Framework.Graphics;
-using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using OpenTK;
@@ -25,13 +24,13 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             Y = y;
         }
         
-        protected override void CheckForJudgements(bool userTriggered, double timeOffset)
+        protected override void CheckForResult(bool userTriggered, double timeOffset)
         {
-            // TODO: use own judgement class, probably
+            // TODO: use own judgment class, probably
 
             if (!userTriggered) {
                 if (!HitObject.HitWindows.CanBeHit(timeOffset))
-                    AddJudgement(new Judgement { Result = HitResult.Miss });
+                    ApplyResult(r => r.Type = HitResult.Miss);
                 return;
             }
 
@@ -39,7 +38,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             if (result == HitResult.None)
                 return;
 
-            AddJudgement(new Judgement { Result = result });
+            ApplyResult(r => r.Type = result);
         }
         
         protected override void UpdateState(ArmedState state)
@@ -48,12 +47,14 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 
             ApplyTransformsAt(transformTime, true);
             ClearTransformsAfter(transformTime, true);
-
+            
             using (BeginAbsoluteSequence(transformTime, true))
             {
                 UpdatePreemptState();
 
-                using (BeginDelayedSequence(HitObject.TimePreempt + (Judgements.FirstOrDefault()?.TimeOffset ?? 0), true))
+                var judgementOffset = Math.Min(HitObject.HitWindows.HalfWindowFor(HitResult.Miss), Result?.TimeOffset ?? 0);
+
+                using (BeginDelayedSequence(HitObject.TimePreempt + judgementOffset, true))
                     UpdateCurrentState(state);
             }
         }

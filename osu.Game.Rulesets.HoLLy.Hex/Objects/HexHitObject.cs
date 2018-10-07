@@ -1,4 +1,5 @@
-﻿using osu.Game.Rulesets.Objects;
+﻿using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Objects;
 
 namespace osu.Game.Rulesets.HoLLy.Hex.Objects
 {
@@ -15,5 +16,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects
 
             StartTime = original.StartTime;
         }
+
+        public override Judgement CreateJudgement() => new Judgement();
     }
 }

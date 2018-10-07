@@ -10,8 +10,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
     {
         public readonly HexLane[] Lanes;
 
-        public HexPlayfield(int laneCount, bool biggerBase = false) : base(ScrollingDirection.Left)
+        public HexPlayfield(int laneCount, bool biggerBase = false)
         {
+            Direction.Value = ScrollingDirection.Left;
+
             Anchor = Anchor.Centre;
             Origin = Anchor.TopLeft;
 

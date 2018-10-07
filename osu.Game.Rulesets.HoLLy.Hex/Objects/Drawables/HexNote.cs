@@ -2,7 +2,6 @@
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.HoLLy.Hex.UI;
-using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using OpenTK;
@@ -40,13 +39,13 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
             });
         }
 
-        protected override void CheckForJudgements(bool userTriggered, double timeOffset)
+        protected override void CheckForResult(bool userTriggered, double timeOffset)
         {
-            //at the moment the note is programmed, check if we're holding in the correct lane
+            // At the moment the note is programmed, check if we're holding in the correct lane
             if (Time.Current >= HitObject.StartTime) {
-                AddJudgement(_lane.IsHovered 
-                    ? new Judgement {Result = HitResult.Perfect} 
-                    : new Judgement {Result = HitResult.Miss});
+                ApplyResult(r => r.Type = _lane.IsHovered 
+                    ? HitResult.Perfect
+                    : HitResult.Miss);
             }
         }
 

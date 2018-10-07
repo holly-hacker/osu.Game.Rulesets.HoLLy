@@ -3,9 +3,10 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Input;
+using osu.Framework.Input.Events;
 using osu.Framework.Logging;
 using osu.Game.Rulesets.Objects.Drawables;
+using osu.Game.Rulesets.Scoring;
 using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
@@ -46,7 +47,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             Logger.Log($"{GetType().Name} rotation: {_noteCenter.Rotation}");
         }
         
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args) => UpdateJudgement(true);
+        protected override bool OnMouseDown(MouseDownEvent e) => UpdateResult(true);
 
         protected override void UpdatePreemptState()
         {
