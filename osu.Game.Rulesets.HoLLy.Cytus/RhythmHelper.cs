@@ -18,10 +18,15 @@ namespace osu.Game.Rulesets.HoLLy.Cytus
 
         public static float GetScanPosition(int beatIndex, int beatsPerScan, float beatPercent)
         {
+            if (beatIndex < 0) {
+                beatIndex = Math.Abs(beatIndex) - 1;
+                beatPercent = 1f - beatPercent;
+            }
+
             // TODO: float beatIndex, making reverse = Math.Float(...) % ...
-            int scanNumber = beatIndex / beatsPerScan;      // Which scan this is, taking _beatCount into account
+            int scanNumber = beatIndex / beatsPerScan;      // Which scan this is
             int beatsPassed = beatIndex % beatsPerScan;     // How many beats have passed this scan
-            bool reverse = Math.Abs(scanNumber) % 2 == 1;   // Does this scan go up instead of down?
+            bool reverse = scanNumber % 2 == 1;   // Does this scan go up instead of down?
 
             float percent = (beatsPassed + beatPercent) / beatsPerScan;
 
