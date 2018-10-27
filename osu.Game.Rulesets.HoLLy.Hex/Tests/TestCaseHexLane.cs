@@ -19,11 +19,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Tests
 
                 Child = new FillFlowContainer {
                     RelativeSizeAxes = Axes.X,
-
-                    Children = Enumerable.Range(minCount, maxCount - minCount).Select(i => new HexLane(i, i) {  //we want different polygons
-                        RelativeSizeAxes = Axes.None,
-                        AutoSizeAxes = Axes.Both,
-                    }).ToArray()
+                    Children = Enumerable.Range(minCount, maxCount - minCount).Select(i => new HexLane(i, i)).ToArray()
                 }
             });
         }

@@ -24,8 +24,6 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables
             Height = 5;
             Width = 1f;
 
-            Depth = -50;
-
             Child = new Box {
                 Width = 1f,
                 Height = 1f,

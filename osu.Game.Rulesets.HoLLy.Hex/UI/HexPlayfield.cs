@@ -24,15 +24,12 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                     Rotation = 90f + 360f * i / laneCount,
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
-                    Padding = new MarginPadding { Left = Constants.PaddingBase * laneCount / 10f },
                     OnUpdate = drawable => drawable.Rotation += (float)Time.Elapsed / 16f * 0.0625f
                 });
             }
 
-            Children = new Drawable[]
-            {
-                new Container
-                {
+            InternalChildren = new Drawable[] {
+                new Container {
                     Children = Lanes
                 }
             };

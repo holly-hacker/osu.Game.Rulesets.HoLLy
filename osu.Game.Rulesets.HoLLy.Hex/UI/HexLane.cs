@@ -16,7 +16,6 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
     internal class HexLane : ScrollingPlayfield
     {
         public new bool IsHovered => _laneBase.IsHovered;
-        protected override Container<Drawable> Content { get; }
 
         private readonly int _index, _laneCount;
         private readonly HexLaneBase _laneBase;
@@ -27,6 +26,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
         public HexLane(int index, int laneCount, bool biggerBase = false)
         {
             Direction.Value = ScrollingDirection.Left;
+            Padding = new MarginPadding { Left = Constants.PaddingBase * laneCount / 10f };
+
+            RelativeSizeAxes = Axes.None;
+            AutoSizeAxes = Axes.X;
 
             _index = index;
             _laneCount = laneCount;
@@ -65,7 +68,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
                 },
-                Content = new Container
+                new Container
                 {
                     Name = "HitobjectContainer",
                     RelativeSizeAxes = Axes.Y,
@@ -73,6 +76,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                     Width = Constants.LaneLength,
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.Centre,
+                    Child = HitObjectContainer
                 }
             };
         }
