@@ -1,7 +1,6 @@
 ﻿using System;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Beatmaps;
 using osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables;
 using osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -12,7 +11,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
 {
     internal class CytusPlayfield : Playfield
     {
-        public CytusPlayfield(IBeatmap bm)
+        public CytusPlayfield()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.BottomCentre;   // I don't know :(
@@ -29,6 +28,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
                 }
             };
         }
+
 
         public override void Add(DrawableHitObject h)
         {

@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
         {
             Size /= 1.5f;
         }
-        
+
         protected override bool OnMouseDown(MouseDownEvent e) => false;
 
         protected override void Update()

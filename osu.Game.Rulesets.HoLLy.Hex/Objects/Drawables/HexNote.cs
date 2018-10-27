@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
         public HexNote(HexLane lane, HexHitObject hitObject, int laneCount) : base(hitObject)
         {
             _lane = lane;
-            
+
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
 
@@ -43,7 +43,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Objects.Drawables
         {
             // At the moment the note is programmed, check if we're holding in the correct lane
             if (Time.Current >= HitObject.StartTime) {
-                ApplyResult(r => r.Type = _lane.IsHovered 
+                ApplyResult(r => r.Type = _lane.IsHovered
                     ? HitResult.Perfect
                     : HitResult.Miss);
             }

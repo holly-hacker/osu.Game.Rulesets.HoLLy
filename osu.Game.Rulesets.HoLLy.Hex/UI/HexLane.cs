@@ -2,7 +2,6 @@
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Input;
 using osu.Framework.Input.Events;
 using osu.Game.Rulesets.HoLLy.Hex.Graphics.Shapes;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -17,11 +16,10 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
     {
         public new bool IsHovered => _laneBase.IsHovered;
 
-        private readonly int _index, _laneCount;
+        private readonly int  _laneCount;
         private readonly HexLaneBase _laneBase;
         private readonly Container _lanePath;
         private readonly Color4 _laneColor;
-        private readonly float _scaledHeight;
 
         public HexLane(int index, int laneCount, bool biggerBase = false)
         {
@@ -31,12 +29,11 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
             RelativeSizeAxes = Axes.None;
             AutoSizeAxes = Axes.X;
 
-            _index = index;
             _laneCount = laneCount;
             _laneColor = Utils.GetAccentColor(index, laneCount);
             VisibleTimeRange.Value = Constants.NoteSpeedBase;
 
-            _scaledHeight = Height = Utils.GetHitobjectSize(laneCount);
+            float scaledHeight = Height = Utils.GetHitobjectSize(laneCount);
 
             InternalChildren = new Drawable[]
             {
@@ -47,8 +44,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                         RelativeSizeAxes = Axes.Both
                     },
                     Height = 3,         //thickness of the bar
-                    X = _scaledHeight/2, //starts at the center of the polygon
-                    Width = Constants.LaneLength - _scaledHeight/2,  //length, should be long enough so that the end cannot be seen
+                    X = scaledHeight/2, //starts at the center of the polygon
+                    Width = Constants.LaneLength - scaledHeight/2,  //length, should be long enough so that the end cannot be seen
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
 
@@ -56,15 +53,15 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                     EdgeEffect = new EdgeEffectParameters {
                         Colour = _laneColor.Opacity(0f),    //invisible until hovered over
                         Type = EdgeEffectType.Glow,
-                        Radius = _scaledHeight * 0.15f,
+                        Radius = scaledHeight * 0.15f,
                     }
                 },
-                
+
                 // TODO: use biggerBase to put a different lane base here, which is a triangle that stretches to the center
                 _laneBase = new HexLaneBase(this)
                 {
                     Name = "LaneBase",
-                    Size = new Vector2(_scaledHeight),   //should be same size as notes
+                    Size = new Vector2(scaledHeight),   //should be same size as notes
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
                 },
@@ -72,7 +69,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
                 {
                     Name = "HitobjectContainer",
                     RelativeSizeAxes = Axes.Y,
-                    X = _scaledHeight/2,             //starts at the center of the polygon, otherwise notes pop too late
+                    X = scaledHeight/2,             //starts at the center of the polygon, otherwise notes pop too late
                     Width = Constants.LaneLength,
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.Centre,

@@ -6,14 +6,14 @@ using osu.Framework.Graphics.Textures;
 using osu.Framework.Input.Events;
 using osu.Framework.Logging;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Scoring;
 using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 {
     internal class CytusDrawableSliderHead : CytusDrawableHitObject
     {
-        protected readonly Sprite _noteBase, _noteCenter;
+        private readonly Sprite _noteBase;
+        protected readonly Sprite NoteCenter;
 
         public CytusDrawableSliderHead(CytusSliderHead hitObject, float x, float y, TextureStore textures) : base(hitObject, x, y)
         {
@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                     },
-                    _noteCenter = new Sprite {
+                    NoteCenter = new Sprite {
                         Texture = textures.Get("CytusSliderArrow"),
                         Size = Vector2.One,
                         RelativeSizeAxes = Axes.Both,
@@ -44,9 +44,9 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                 }
             });
 
-            Logger.Log($"{GetType().Name} rotation: {_noteCenter.Rotation}");
+            Logger.Log($"{GetType().Name} rotation: {NoteCenter.Rotation}");
         }
-        
+
         protected override bool OnMouseDown(MouseDownEvent e) => UpdateResult(true);
 
         protected override void UpdatePreemptState()
@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             const int rotateTime = 2000;
             this.FadeIn(HitObject.TimePreempt * (2f/3f));
             _noteBase.Spin(rotateTime, RotationDirection.Clockwise);
-            _noteCenter.ScaleTo(1, HitObject.TimePreempt, Easing.In);
+            NoteCenter.ScaleTo(1, HitObject.TimePreempt, Easing.In);
         }
 
         protected override void UpdateCurrentState(ArmedState state)

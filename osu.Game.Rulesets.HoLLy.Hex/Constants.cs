@@ -9,6 +9,6 @@
         public const int LanesMin = 3;
         public const int LanesMax = 10;
 
-        public static double NoteSpeedBase = 4_000;
+        public  const double NoteSpeedBase = 4_000;
     }
 }

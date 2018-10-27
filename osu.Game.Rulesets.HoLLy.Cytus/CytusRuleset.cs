@@ -15,8 +15,8 @@ namespace osu.Game.Rulesets.HoLLy.Cytus
 {
     public class CytusRuleset : Ruleset
     {
-        public ResourceStore<byte[]> ResourceStore;
-        public TextureStore TextureStore;
+        public readonly ResourceStore<byte[]> ResourceStore;
+        public readonly TextureStore TextureStore;
 
         public override string Description => "Not Cytus";
         public override string ShortName => "holly.cytus";

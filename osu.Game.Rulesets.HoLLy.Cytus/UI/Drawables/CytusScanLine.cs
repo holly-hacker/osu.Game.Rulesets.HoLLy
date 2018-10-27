@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables
             RelativePositionAxes = Axes.Y;  // Allow setting Y pos by %
             Anchor = Anchor.CentreLeft;     // Attached to parent at left center
             Origin = Anchor.CentreLeft;     // Left center is 0,0
-            
+
             Height = 5;
             Width = 1f;
 
@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI.Drawables
             base.Update();
 
             float beatPercent = (float)(TimeSinceLastBeat / (TimeSinceLastBeat + TimeUntilNextBeat));   // How far are we into this beat
-            
+
             Y = RhythmHelper.GetScanPosition(_beatIndex, _beatsPerScan, beatPercent);
         }
     }

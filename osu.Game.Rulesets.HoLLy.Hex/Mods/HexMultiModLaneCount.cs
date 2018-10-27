@@ -9,8 +9,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
     internal class HexMultiModLaneCount : MultiMod
     {
         public HexMultiModLaneCount() : base(
-            new HexModLaneCount3(), new HexModLaneCount4(), new HexModLaneCount5(), 
-            new HexModLaneCount6(), new HexModLaneCount7(), new HexModLaneCount8(), 
+            new HexModLaneCount3(), new HexModLaneCount4(), new HexModLaneCount5(),
+            new HexModLaneCount6(), new HexModLaneCount7(), new HexModLaneCount8(),
             new HexModLaneCount9(), new HexModLaneCount10()) { }
 
         private class HexModLaneCount3 : HexModLaneCount { public HexModLaneCount3() : base(3) { } }
@@ -23,7 +23,6 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Mods
         private class HexModLaneCount10: HexModLaneCount { public HexModLaneCount10(): base(10){ } }
     }
 
-    //internal abstract class HexModLaneCount : Mod, IApplicableToBeatmapConverter<HexHitObject>
     internal abstract class HexModLaneCount : Mod, IApplicableToBeatmapConverter
     {
         private readonly int _lanes;

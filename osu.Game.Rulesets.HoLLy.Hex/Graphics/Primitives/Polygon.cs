@@ -18,25 +18,25 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Graphics.Primitives
                 throw new ArgumentOutOfRangeException(nameof(sides), $"A {nameof(Polygon)} needs at least 3 sides. (has {sides})");
 
             Triangles = new Triangle[sides];
-            
+
             float angleInterval = MathHelper.TwoPi / sides;    //in radians
 
             //get the first (shared) point
             var shared = CreateVector2(center, radiusX, radiusY, startAngle);
             Vector2 prev = CreateVector2(center, radiusX, radiusY, startAngle + angleInterval);
 
-            for (int i = 2; i < sides; i++) {   //0 is shared, 1 is precalculated
+            for (int i = 2; i < sides; i++) {   //0 is shared, 1 is pre-calculated
                 float angle = (float)startAngle + angleInterval * i;
 
-                var curr = CreateVector2(center, radiusX, radiusY, angle);
-                Triangles[i-2] = new Triangle(shared, prev, curr);
-                prev = curr;
+                var current = CreateVector2(center, radiusX, radiusY, angle);
+                Triangles[i-2] = new Triangle(shared, prev, current);
+                prev = current;
             }
         }
 
         //TODO: still doesn't stretch
-        public Polygon(Quad a, int sides) : this(a.Centre, 
-            new Vector2((a.TopRight - a.TopLeft).Length/2, (a.BottomRight - a.TopRight).Length / 2), 
+        public Polygon(Quad a, int sides) : this(a.Centre,
+            new Vector2((a.TopRight - a.TopLeft).Length/2, (a.BottomRight - a.TopRight).Length / 2),
             sides, (a.TopRight - a.TopLeft).AngleRadians()) { }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Graphics.Primitives
                 return area;
             }
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Vector2 CreateVector2(Vector2 center, float sizeX, float sizeY, double angle) 
+        private static Vector2 CreateVector2(Vector2 center, float sizeX, float sizeY, double angle)
             => center + new Vector2((float)Math.Sin(angle) * sizeX, (float)Math.Cos(angle) * sizeY);
     }
 }

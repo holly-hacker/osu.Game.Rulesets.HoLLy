@@ -75,7 +75,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Tests
                     Colour = Color4.Tomato
                 });
             }
-            
+
             //rotating with bg
             for (int i = minCount; i <= maxCount; i++) {
                 flow.Add(new Container {

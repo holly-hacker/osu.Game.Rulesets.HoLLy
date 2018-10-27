@@ -12,16 +12,17 @@ namespace osu.Game.Rulesets.HoLLy.Hex.Tests
     public class TestCasePlayfield : OsuTestCase
     {
         private HexPlayfield playfield;
-        private Container c;
+        private readonly Container playfieldContainer;
+
         public TestCasePlayfield()
         {
-            Bindable<int> bindable = new Bindable<int>(6) {Default = 6};
+            var bindable = new Bindable<int>(6) { Default = 6 };
             bindable.ValueChanged += i => {
-                c.Remove(playfield);
-                c.Add(playfield = new HexPlayfield(i));
+                playfieldContainer.Remove(playfield);
+                playfieldContainer.Add(playfield = new HexPlayfield(i));
             };
 
-            Add(c = new Container
+            Add(playfieldContainer = new Container
             {
                 RelativeSizeAxes = Axes.Both,
 

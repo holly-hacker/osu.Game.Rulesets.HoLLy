@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex
                     };
                 case 4:
                     return new[] {
-                        Color4.Red,  Color4.Yellow, Color4.Green, Color4.Blue, 
+                        Color4.Red,  Color4.Yellow, Color4.Green, Color4.Blue,
                     };
                 case 5:
                     return new[] {

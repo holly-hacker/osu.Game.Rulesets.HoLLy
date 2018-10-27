@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.HoLLy.Hex.UI
 {
     internal class HexRulesetContainer : ScrollingRulesetContainer<HexPlayfield, HexHitObject>
     {
-        public HexRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap) 
+        public HexRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap)
             : base(ruleset, workingBeatmap) { }
 
         public bool BiggerBase { get; set; }

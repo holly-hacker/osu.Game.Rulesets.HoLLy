@@ -13,17 +13,17 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
             Alpha = 0;  // Start transparent
 
             Size = new Vector2(48f);    // TODO: calculate this
-            
+
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-            
+
             RelativePositionAxes = Axes.Y;
             RelativeSizeAxes = Axes.None;
-            
+
             X = x;
             Y = y;
         }
-        
+
         protected override void CheckForResult(bool userTriggered, double timeOffset)
         {
             // TODO: use own judgment class, probably
@@ -40,14 +40,14 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 
             ApplyResult(r => r.Type = result);
         }
-        
+
         protected override void UpdateState(ArmedState state)
         {
             double transformTime = HitObject.StartTime - HitObject.TimePreempt;
 
             ApplyTransformsAt(transformTime, true);
             ClearTransformsAfter(transformTime, true);
-            
+
             using (BeginAbsoluteSequence(transformTime, true))
             {
                 UpdatePreemptState();

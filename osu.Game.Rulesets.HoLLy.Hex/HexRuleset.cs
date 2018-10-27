@@ -16,8 +16,8 @@ namespace osu.Game.Rulesets.HoLLy.Hex
 {
     public class HexRuleset : Ruleset
     {
-        public ResourceStore<byte[]> ResourceStore;
-        public TextureStore TextureStore;
+        public readonly ResourceStore<byte[]> ResourceStore;
+        public readonly TextureStore TextureStore;
 
         public override string Description => "Polygon";
         public override string ShortName => "holly.hex";

@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
 
         public override ScoreProcessor CreateScoreProcessor() => new CytusScoreProcessor(this);
 
-        protected override Playfield CreatePlayfield() => new CytusPlayfield(Beatmap);
+        protected override Playfield CreatePlayfield() => new CytusPlayfield();
 
         protected override DrawableHitObject<CytusHitObject> GetVisualRepresentation(CytusHitObject obj)
         {

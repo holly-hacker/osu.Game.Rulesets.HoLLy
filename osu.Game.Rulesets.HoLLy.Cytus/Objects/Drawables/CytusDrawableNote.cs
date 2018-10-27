@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
     internal class CytusDrawableNote : CytusDrawableHitObject
     {
         private readonly Sprite _noteBase, _noteCenter;
-        
+
         public override bool HandlePositionalInput => true;
 
         public CytusDrawableNote(CytusNote hitObject, float x, float y, TextureStore textures) : base(hitObject, x, y)
