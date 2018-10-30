@@ -36,6 +36,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.UI
                     case CytusSliderEnd e:  return new CytusDrawableSliderEnd(e, x, y, _textures);    // Order matters for slider pieces
                     case CytusSliderTick t: return new CytusDrawableSliderTick(t, x, y, _textures);
                     case CytusSliderHead h: return new CytusDrawableSliderHead(h, x, y, _textures);
+                    case CytusHoldNote h:   return new CytusDrawableHoldNote(h, x, y);
                     default:
                         throw new Exception("Unexpected hitobject type");
             }

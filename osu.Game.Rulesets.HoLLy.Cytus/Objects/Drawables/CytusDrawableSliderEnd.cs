@@ -7,7 +7,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
         public CytusDrawableSliderEnd(CytusSliderTick hitObject, float x, float y, TextureStore textures) : base(hitObject, x, y, textures)
         {
             // Don't show the arrow, since we're the last one
-            NoteCenter.Hide();
+            SliderArrow.Hide();
         }
     }
 }

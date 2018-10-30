@@ -8,11 +8,14 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 {
     internal abstract class CytusDrawableHitObject : DrawableHitObject<CytusHitObject>
     {
+        protected const int TimeRotate = 2000;
+        protected const double TimeFadeHit = 100, TimeFadeMiss = 500;
+
         protected CytusDrawableHitObject(CytusHitObject hitObject, float x, float y) : base(hitObject)
         {
             Alpha = 0;  // Start transparent
 
-            Size = new Vector2(48f);    // TODO: calculate this
+            Size = new Vector2(96f);    // TODO: make this not dependent on resolution (in playfield)
 
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
@@ -58,8 +61,27 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
                     UpdateCurrentState(state);
             }
         }
+        protected virtual void UpdatePreemptState()
+        {
+            this.FadeIn(HitObject.TimePreempt * (2f / 3f));
+        }
 
-        protected abstract void UpdatePreemptState();
-        protected abstract void UpdateCurrentState(ArmedState state);
+        protected virtual void UpdateCurrentState(ArmedState state)
+        {
+            switch (state) {
+                case ArmedState.Idle:
+                    break;
+                case ArmedState.Hit:
+                    this.ScaleTo(1.25f, TimeFadeHit, Easing.OutCubic)
+                        .FadeOut(TimeFadeHit)
+                        .Expire();
+                    break;
+                case ArmedState.Miss:
+                    this.FadeOut(TimeFadeMiss, Easing.OutCubic)
+                        .ScaleTo(0.5f, TimeFadeMiss)
+                        .Expire();
+                    break;
+            }
+        }
     }
 }

@@ -3,7 +3,6 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Input.Events;
-using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 
 namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
@@ -44,30 +43,10 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Objects.Drawables
 
         protected override void UpdatePreemptState()
         {
-            const int rotateTime = 2000;
-            this.FadeIn(HitObject.TimePreempt * (2f/3f));
-            _noteBase.Spin(rotateTime, RotationDirection.Clockwise);
+            base.UpdatePreemptState();
+
+            _noteBase.Spin(TimeRotate, RotationDirection.Clockwise);
             _noteCenter.ScaleTo(1, HitObject.TimePreempt, Easing.In);
-        }
-
-        protected override void UpdateCurrentState(ArmedState state)
-        {
-            const double timeFadeHit = 100, timeFadeMiss = 500;
-
-            switch (state) {
-                case ArmedState.Idle:
-                    break;
-                case ArmedState.Hit:
-                    this.ScaleTo(1.25f, timeFadeHit, Easing.OutCubic)
-                        .FadeOut(timeFadeHit)
-                        .Expire();
-                    break;
-                case ArmedState.Miss:
-                    this.FadeOut(timeFadeMiss, Easing.OutCubic)
-                        .ScaleTo(0.5f, timeFadeMiss)
-                        .Expire();
-                    break;
-            }
         }
     }
 }

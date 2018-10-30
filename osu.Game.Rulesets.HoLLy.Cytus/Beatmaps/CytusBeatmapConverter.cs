@@ -24,9 +24,7 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
             float y = beatmap.GetScanPosition(original.StartTime, Constants.BeatsPerScan);
 
             // we have to determine if this is a slider or normal hitobject
-            // TODO: check for IHasRepeats
             if (original is IHasCurve ihc) {
-                CytusSliderTick lastTick;
                 double endTime = ihc.EndTime;
                 var tp = beatmap.ControlPointInfo.TimingPointAt(time);
                 double tickInterval = tp.BeatLength / (int)tp.TimeSignature;
@@ -37,27 +35,36 @@ namespace osu.Game.Rulesets.HoLLy.Cytus.Beatmaps
                     Offset = Vector2.Zero
                 };
 
-                var end = lastTick = new CytusSliderEnd(endTime, x + curve.PositionAt(1).X, beatmap.GetScanPosition(endTime, Constants.BeatsPerScan)) {
-                    Samples = original.Samples,
-                    SampleControlPoint = original.SampleControlPoint
-                };
-
-                var ticks = new List<CytusSliderTick>();
-                for (double i = endTime - tickInterval; i >= time + tickInterval/2; i -= tickInterval)
-                    ticks.Add(lastTick = new CytusSliderTick(i, x + curve.PositionAt((i - time) / (endTime - time)).X, beatmap.GetScanPosition(i, Constants.BeatsPerScan), lastTick) {
+                if (ihc is IHasRepeats ihr && ihr.RepeatCount != 0) {
+                    yield return new CytusHoldNote(time, endTime, x, y) {
                         Samples = original.Samples,
                         SampleControlPoint = original.SampleControlPoint
-                    });
+                    };
+                } else {
+                    CytusSliderTick lastTick;
+                    CytusSliderTick end = lastTick = new CytusSliderEnd(endTime, x + curve.PositionAt(1).X, beatmap.GetScanPosition(endTime, Constants.BeatsPerScan)) {
+                        Samples = original.Samples,
+                        SampleControlPoint = original.SampleControlPoint
+                    };
 
-                var start = new CytusSliderHead(original.StartTime, x, y, lastTick) {
-                    Samples = original.Samples,
-                    SampleControlPoint = original.SampleControlPoint
-                };
+                    var ticks = new List<CytusSliderTick>();
+                    for (double i = endTime - tickInterval; i >= time + tickInterval/2; i -= tickInterval)
+                        ticks.Add(lastTick = new CytusSliderTick(i, x + curve.PositionAt((i - time) / (endTime - time)).X, beatmap.GetScanPosition(i, Constants.BeatsPerScan), lastTick) {
+                            Samples = original.Samples,
+                            SampleControlPoint = original.SampleControlPoint
+                        });
 
-                yield return start;
-                foreach (var tick in ticks)
-                    yield return tick;
-                yield return end;
+                    var start = new CytusSliderHead(original.StartTime, x, y, lastTick) {
+                        Samples = original.Samples,
+                        SampleControlPoint = original.SampleControlPoint
+                    };
+
+                    // Return everything we just made
+                    yield return start;
+                    foreach (var tick in ticks)
+                        yield return tick;
+                    yield return end;
+                }
             } else {
                 // This is a normal note
                 yield return new CytusNote(time, x, y) {
